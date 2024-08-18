@@ -1,0 +1,274 @@
+@import './../../../css/common';
+
+.home {
+    .vidgets {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+        grid-auto-rows: auto;
+        gap: 10px;
+        .content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+        }
+        .vidgets_item {
+            min-height: 300px;
+            .header_block {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: space-between;
+                a {
+                    opacity: 0.5;
+                    transition: 0.3s;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .title {
+                @include adaptiveFont(22, 18);
+            }
+            &.notes {
+                background-color: var(--grey);
+                border-radius: 20px;
+                @include adaptiveProperty(padding, 15, 10);
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .notes_list {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr auto;
+                    grid-auto-rows: auto;
+                    gap: 10px;
+                    flex: 1;
+                    .notes_list_item {
+                        position: relative;
+                        height: 100%;
+                        background-color: var(--background);
+                        border-radius: 10px;
+                        overflow: hidden;
+                        @include adaptiveProperty(padding, 10, 8);
+                        cursor: pointer;
+                        .content {
+                            display: flex;
+                            flex-direction: column;
+                            .tem {
+                                margin-top: auto;
+                                @include adaptiveFont(16, 14);
+                                margin-bottom: 5px;
+                            }
+                            .description {
+                                opacity: 0.5;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                            }
+                        }
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 1;
+                            object-fit: cover;
+                            object-position: center;
+                            transition: 0.5s;
+                        }
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 2;
+                            background-color: rgba($color: #000000, $alpha: 0.3);
+                        }
+                        &:hover {
+                            img {
+                                transform: scale(1.05);
+                            }
+                        }
+                    }
+                    .all_notes {
+                        width: max-content;
+                        padding: 20px;
+                        height: 100%;
+                        writing-mode: vertical-rl;
+                        transform: rotate(180deg);
+                        text-align: center;
+                        border-radius: 10px;
+                        background-color: var(--background);
+                        cursor: pointer;
+                        transition: 0.4s;
+                        font-weight: 500;
+                        &:hover {
+                            background-color: var(--main-color);
+                            color: var(--text-color-dark);
+                        }
+                    }
+                }
+            }
+            &.flex {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .card {
+                width: 100%;
+                min-width: 200px;
+                flex: 1;
+                position: relative;
+                border-radius: 20px;
+                background-color: var(--grey);
+                height: 100%;
+                max-height: 30dvh;
+                min-height: 300px;
+                overflow: hidden;
+                @include adaptiveProperty(padding, 15, 10);
+            }
+            .weather {
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    z-index: 1;
+                }
+                .date {
+                    @include adaptiveFont(20, 18);
+                    margin-bottom: 5px;
+                }
+                .day {
+                    @include adaptiveFont(14, 12);
+                    text-transform: capitalize;
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 2;
+                    background-color: rgba($color: #000000, $alpha: 0.3);
+                }
+            }
+            .orders_vidget {
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    justify-content: space-between;
+                }
+                .progress {
+                    position: relative;
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .count {
+                        position: relative;
+                        z-index: 11;
+                        width: 100%;
+                        max-width: 80px;
+                        text-align: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        font-size: 16px;
+                    }
+                    svg {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) rotate(-90deg);
+                        z-index: 10;
+                    }
+                    .order_circle {
+                        background-color: transparent;
+                        fill: transparent;
+                        stroke-width: 40px;
+                        &.done {
+                            stroke-width: 20px;
+                        }
+                        &.current {
+                            stroke-width: 30px;
+                        }
+                    }
+                }
+                .marks {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-auto-rows: auto;
+                    gap: 5px;
+                    .mark_item {
+                        position: relative;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        @include adaptiveFont(13, 12);
+                        padding-left: 15px;
+                        white-space: nowrap;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 12px;
+                            height: 12px;
+                            background-color: red;
+                            border-radius: 2px;
+                        }
+                        &.new::before {
+                            background-color: aqua;
+                        }
+                        &.current::before {
+                            background-color: rgb(255, 244, 85);
+                        }
+                        &.done::before {
+                            background-color: rgb(255, 255, 255);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .statistic {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        @include adaptiveProperty(column-gap, 40, 20);
+        @include adaptiveProperty(padding, 15, 10);
+        background-color: var(--grey);
+        border-radius: 20px;
+        margin-top: 10px;
+        row-gap: 10px;
+        .statistic_item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            img {
+                display: block;
+                width: 55px;
+                background-color: var(--background);
+                padding: 10px;
+                border-radius: 50%;
+            }
+            .description {
+                h3 {
+                    @include adaptiveFont(20, 18);
+                    margin-bottom: 5px;
+                }
+                p {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}

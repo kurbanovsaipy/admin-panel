@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/*-----------Цвеиа------------*/
+/*-------------Миксины----------------*/
+.header {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 30px;
+}
+@media (max-width: 768px) {
+  .header h2 {
+    font-size: calc(25px + 8.5 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .header h2 {
+    font-size: calc(25px + 5 * 0.0520833333vw);
+  }
+}/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,291 @@
+@import './../../../css/common';
+
+.dashboard {
+    flex: 1;
+    background-color: var(--grey);
+    width: 100%;
+    min-height: 100dvh;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    transition: 1s;
+    padding: 20px;
+    padding-top: 30px;
+    .dashboard_header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h1 {
+            @include adaptiveFont(30, 25);
+            white-space: nowrap;
+            transition: 0.3s;
+            width: 100%;
+            overflow: hidden;
+        }
+        .main_icon {
+            transform: scale(1);
+        }
+    }
+    .navigation {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        @include adaptiveProperty(gap, 25, 10); 
+        a {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            width: 100%;
+            will-change: transform;
+            transform-origin: left;
+            padding: 15px 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.4s;
+            p {
+                @include adaptiveFont(20, 16);
+                transition: 0.4s;
+                font-weight: 300;
+                line-height: 0.9;
+                overflow: hidden;
+            }
+            svg {
+                width: 20px;
+                height: 20px;
+                transition: 0.4s;
+                .icon {
+                    path,
+                    circle {
+                        stroke: var(--text-color-light);
+                    }
+                }
+            }
+            &.active {
+                background-color: var(--background);
+                svg {
+                    .icon {
+                        path,
+                        circle {
+                            stroke: var(--main-color);
+                        }
+                    }
+                }
+            }
+            &:hover {
+                background-color: var(--background);
+                svg {
+                    .icon {
+                        path,
+                        circle {
+                            stroke: var(--main-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom_panel {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        height: 140px;
+        .bottom_item {
+            width: 35px;
+            height: 35px;
+        }
+    }
+}
+
+.dashboard.hide {
+    max-width: 100px;
+    .dashboard_header {
+        animation: HideAnim 1s forwards;
+        h1 {
+            animation: HideText 1s forwards;
+        }
+        .main_icon {
+            animation: HideArrow 1s forwards;
+        }
+    }
+    .navigation {
+        a {
+            animation: HideAnim 1s forwards;
+            p {
+                animation: HideText 1s forwards;
+            }
+        }
+    }
+
+    .bottom_panel {
+        animation: HideBottom 1s forwards;
+    }
+}
+
+.dashboard.open {
+    transition: 1.3s;
+    transition-delay: 0.3s;
+    max-width: 500px;
+    .dashboard_header {
+        animation: OpenAnim 1s forwards;
+        h1 {
+            animation: OpenText 1s forwards;
+        }
+        .main_icon {
+            animation: OpenArrow 1s forwards;
+        }
+    }
+    .navigation {
+        a {
+            animation: OpenAnim 1s forwards;
+            p {
+                animation: OpenText 1s forwards;
+            }
+        }
+    }
+
+    .bottom_panel {
+        animation: OpenBottom 1s forwards;
+    }
+}
+
+@keyframes HideArrow {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    20% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    80% {
+        opacity: 0;
+        transform: scale(-1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(-1);
+    }
+}
+
+@keyframes OpenArrow {
+    0% {
+        opacity: 1;
+        transform: scale(-1);
+    }
+    20% {
+        opacity: 0;
+        transform: scale(-1);
+    }
+    80% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes HideText {
+    0% {
+        display: block;
+    }
+    20% {
+        display: none;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+@keyframes OpenText {
+    0% {
+        display: none;
+    }
+    20% {
+        display: none;
+    }
+    100% {
+        display: block;
+    }
+}
+
+@keyframes HideAnim {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes OpenAnim {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes HideBottom {
+    0% {
+        opacity: 1;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    20% {
+        opacity: 0;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    80% {
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    100% {
+        opacity: 1;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@keyframes OpenBottom {
+    0% {
+        opacity: 1;
+        flex-direction: column;
+        align-items: center;
+    }
+    20% {
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    80% {
+        opacity: 0;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    100% {
+        opacity: 1;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}

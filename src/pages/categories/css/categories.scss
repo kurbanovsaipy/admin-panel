@@ -1,0 +1,82 @@
+@import './../../../css/common';
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: auto;
+    .categories_item {
+        position: relative;
+        height: 100%;
+        min-height: 400px;
+        max-height: 50dvh;
+        padding: 15px;
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        cursor: pointer;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.514);
+            z-index: 2;
+            transition: 0.3s;
+        }
+        .title {
+            position: relative;
+            z-index: 3;
+            @include adaptiveFont(25, 20);
+        }
+        .back_image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1px;
+        }
+        &.add {
+            position: relative;
+            background-color: var(--grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .cross {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                z-index: 3;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 2px;
+                    height: 100%;
+                    background-color: var(--text-color-light);
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--text-color-light);
+                    top: 50%; 
+                    left: 0;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+        &:hover {
+            &::before {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}

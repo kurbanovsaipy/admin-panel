@@ -1,0 +1,16 @@
+@import './../../../css/common';
+
+.header {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 30px;
+    h2 {
+        @include adaptiveFont(30, 25);
+    }
+}

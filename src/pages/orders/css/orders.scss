@@ -1,0 +1,43 @@
+@import './../../../css/common';
+
+.orders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: auto;
+    gap: 30px;
+    .orders_item {
+        width: 100%;
+        max-height: 80dvh;
+        min-height: 400px;
+        height: 100%;
+        overflow: auto;
+        padding: 20px;
+        background-color: black;
+        &.new {
+            border-top: 2px solid rgb(131, 0, 0);
+        }
+        &.proces {
+            border-top: 2px solid rgb(150, 150, 3);
+        }
+        &.finish {
+            border-top: 2px solid rgb(179, 139, 145);
+        }
+        .orders_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            h2 {
+                @include adaptiveFont(20, 15);
+            }
+            p {
+                @include adaptiveFont(18, 14);
+            }
+        }
+        .order_list {
+            margin-top: 20px;
+            background-color: var(--grey);
+            @include adaptiveProperty(padding, 15, 10);
+        }
+    }
+}
