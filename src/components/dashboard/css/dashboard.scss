@@ -59,6 +59,7 @@
                     path,
                     circle {
                         stroke: var(--text-color-light);
+                        transition: 0.4s;
                     }
                 }
             }

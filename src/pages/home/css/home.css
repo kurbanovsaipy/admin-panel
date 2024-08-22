@@ -176,6 +176,9 @@
     padding: calc(10px + 5 * 0.0520833333vw);
   }
 }
+.home .vidgets .vidgets_item .weather {
+  cursor: pointer;
+}
 .home .vidgets .vidgets_item .weather img {
   position: absolute;
   top: 0;
@@ -187,6 +190,10 @@
   -o-object-position: center;
      object-position: center;
   z-index: 1;
+  transition: 0.5s;
+}
+.home .vidgets .vidgets_item .weather:hover img {
+  transform: scale(1.05);
 }
 .home .vidgets .vidgets_item .weather .date {
   margin-bottom: 5px;

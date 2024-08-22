@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Store from "../../Store";
 
 
 export default function useWeather() {
@@ -9,6 +10,11 @@ export default function useWeather() {
 
     const padTo2 = (num) => {
         return num.toString().padStart(2, '0')
+    }
+
+    const openCalendar = () => {
+        Store.setListener('calendar', 'show')
+        document.querySelector('html').style.overflow = 'hidden'
     }
 
     useEffect(() => {
@@ -26,5 +32,5 @@ export default function useWeather() {
 
     }, [])
 
-    return {day, month, weekDay}
+    return {day, month, weekDay, openCalendar}
 }

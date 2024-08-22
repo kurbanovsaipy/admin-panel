@@ -131,6 +131,7 @@
                 @include adaptiveProperty(padding, 15, 10);
             }
             .weather {
+                cursor: pointer;
                 img {
                     position: absolute;
                     top: 0;
@@ -140,6 +141,12 @@
                     object-fit: cover;
                     object-position: center;
                     z-index: 1;
+                    transition: 0.5s;
+                }
+                &:hover {
+                    img {
+                        transform: scale(1.05)
+                    }
                 }
                 .date {
                     @include adaptiveFont(20, 18);

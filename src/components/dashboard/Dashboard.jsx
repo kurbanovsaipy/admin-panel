@@ -68,7 +68,7 @@ const Dashboard = () => {
                     </svg>
                     <p>Категории</p>
                 </NavLink>
-                <NavLink to="/orders">
+                <NavLink to="/34">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                     </svg>
                     <p>Товары</p>
                 </NavLink>
-                <NavLink to="/orders">
+                <NavLink to="/344">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>

@@ -90,6 +90,7 @@
 .dashboard .navigation a svg .icon path,
 .dashboard .navigation a svg .icon circle {
   stroke: var(--text-color-light);
+  transition: 0.4s;
 }
 .dashboard .navigation a.active {
   background-color: var(--background);
