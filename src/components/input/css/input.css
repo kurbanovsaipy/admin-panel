@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/*-----------Цвеиа------------*/
+/*-------------Миксины----------------*/
+.main_input {
+  padding: 5px 0;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 2px solid var(--text-color-light);
+  display: block;
+  color: var(--text-color-light);
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .main_input {
+    font-size: calc(14px + 3.4 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_input {
+    font-size: calc(14px + 2 * 0.0520833333vw);
+  }
+}
+.main_input:focus {
+  border-bottom: 2px solid var(--main-color);
+}
+.main_input.active {
+  border-bottom: 2px solid var(--main-color);
+}
+.main_input.area::-webkit-scrollbar {
+  width: 0px;
+}/*# sourceMappingURL=input.css.map */

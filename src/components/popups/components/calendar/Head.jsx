@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Head = () => {
+const Head = ({year, months, month, prevMonth, nextMonth}) => {
+
     return (
         <div className="calendar_head">
-            <h2>Январь <span>2024</span></h2>
+            <h2>{months[month]} <span>{year}</span></h2>
             <div className="calendar_navigation">
-                <button>
+                <button onMouseDown={prevMonth}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -16,7 +17,7 @@ const Head = () => {
 
                     </svg>
                 </button>
-                <button className='right'>
+                <button className='right' onMouseDown={nextMonth}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>

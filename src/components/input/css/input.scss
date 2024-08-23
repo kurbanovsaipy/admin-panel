@@ -1,0 +1,23 @@
+@import './../../../css/common';
+
+.main_input {
+    padding: 5px 0;
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 2px solid var(--text-color-light);
+    display: block;
+    color: var(--text-color-light);
+    @include adaptiveFont(16, 14);
+    transition: 0.3s;
+    &:focus{
+        border-bottom: 2px solid var(--main-color);
+    }
+    &.active {
+        border-bottom: 2px solid var(--main-color);
+    }
+    &.area {
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+    }
+}
