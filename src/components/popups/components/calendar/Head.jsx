@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Head = ({year, months, month, prevMonth, nextMonth}) => {
+const Head = ({titleRef, year, months, month, prevMonth, nextMonth}) => {
 
     return (
         <div className="calendar_head">
-            <h2>{months[month]} <span>{year}</span></h2>
+            <h2 ref={titleRef}>{months[month]} <span>{year}</span></h2>
             <div className="calendar_navigation">
                 <button onMouseDown={prevMonth}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)">

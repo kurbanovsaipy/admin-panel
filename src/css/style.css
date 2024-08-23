@@ -276,6 +276,12 @@ input:-webkit-autofill:focus {
   stroke: var(--text-color-dark);
 }
 
+.main_loading {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+}
+
 @keyframes Open {
   0% {
     transform: translateY(-100%);

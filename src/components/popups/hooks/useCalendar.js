@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Store from "../../../Store"
 
 
@@ -41,6 +41,10 @@ export default function useCalendar() {
         11: 'Ноябрь',
         12: 'Декабрь'
     }
+
+    const timeout = useRef(null)
+    const calendarRef = useRef(null)
+    const titleRef = useRef(null)
 
     Store.useListener('calendar', setIsOpen)
 
@@ -86,7 +90,7 @@ export default function useCalendar() {
 
     const nextMonth = () => {
         if(date.month > 11) {
-            return setDate(prev => ({...prev, month: 12, year: prev.year + 1}))
+            return setDate(prev => ({...prev, month: 1, year: prev.year + 1}))
         } else {
             return setDate(prev => ({...prev, month: prev.month + 1}))
         }
@@ -94,23 +98,34 @@ export default function useCalendar() {
 
     useEffect(() => {
 
-        let days = getDaysInMonth(date.year, date.month)
-        let start = getFirstDayOfWeek(date.year, date.month)
-        let list = []
+        clearTimeout(timeout.current)
+        
+        if(calendarRef.current) {
+            calendarRef.current.style.opacity = '0'
 
-        for (let i = 0; i < start; i++) {
-            list.push(0)
+            timeout.current = setTimeout(() => {
+                let days = getDaysInMonth(date.year, date.month)
+                let start = getFirstDayOfWeek(date.year, date.month)
+                let list = []
+        
+                for (let i = 0; i < start; i++) {
+                    list.push(0)
+                }
+                for (let i = 1; i <= days; i++) {
+                    list.push(i)
+                }
+                for (let i = 1; i <= 42 - days - start; i++) {
+                    list.push(0)
+                }
+        
+                setCalendarList(list)
+                timeout.current = setTimeout(() => {
+                    calendarRef.current.style.opacity = '1'
+                }, 300)
+            }, 300)
         }
-        for (let i = 1; i <= days; i++) {
-            list.push(i)
-        }
-        for (let i = 1; i <= 42 - days - start; i++) {
-            list.push(0)
-        }
 
-        setCalendarList(list)
+    }, [date.month, date.year, calendarRef])
 
-    }, [date.month, date.year])
-
-    return {isOpen, closePopUp, days, calendarList, date, months, prevMonth, nextMonth}
+    return {isOpen, closePopUp, days, calendarList, date, months, prevMonth, nextMonth, calendarRef, titleRef}
 }

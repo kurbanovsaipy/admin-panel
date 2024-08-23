@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Store from '../../Store';
-import { NavLink } from 'react-router-dom';
 import './css/categories.css'
 import img from './images/platya.jpg'
 
@@ -10,23 +9,53 @@ const Categories = () => {
         Store.setListener('title', 'Категории')
     }, [])
 
-    const openUpdateCategoriesPopUp = (id) => {
-        Store.setListener('categories', 'show')
-        Store.setListener('categories_id', id)
-        document.querySelector('html').style.overflow = 'hidden'
+    const openUpdateCategoriesPopUp = () => {
+
     }
 
     const openCategoriesPopUp = () => {
-        Store.setListener('categories', 'show')
         document.querySelector('html').style.overflow = 'hidden'
+        Store.setListener('open', 'show')
+        Store.setListener('data', {
+            title: 'Добавить категорию',
+            image: true,
+            imagePreview: null,
+            form: [
+                {
+                    placeholder: 'Название категории',
+                    value: '',
+                    type: 'text'
+                },
+                {
+                    placeholder: 'Название категории(в единственном числе)',
+                    value: '',
+                    type: 'text'
+                },
+                {
+                    placeholder: 'Для мужчин',
+                    value: '',
+                    type: 'checkbox'
+                },
+                {
+                    placeholder: 'Для женщин',
+                    value: '',
+                    type: 'checkbox'
+                },
+                {
+                    placeholder: 'Изображение',
+                    value: '',
+                    type: 'file'
+                }
+            ],
+        })
     }
 
     return (
         <div className='categories container'>
-            <NavLink className="categories_item" onMouseDown={() => openUpdateCategoriesPopUp(1)}>
+            <div className="categories_item" onMouseDown={() => openUpdateCategoriesPopUp()}>
                 <img src={img} className='back_image' alt="" />
                 <h3 className='title'>Платья</h3>
-            </NavLink>
+            </div>
             <div className="categories_item add" onMouseDown={openCategoriesPopUp}><span className='cross'></span></div>
         </div>
     );

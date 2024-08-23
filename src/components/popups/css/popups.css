@@ -262,6 +262,9 @@
     font-size: calc(30px + 10 * 0.0520833333vw);
   }
 }
+.calendar .calendar_head h2 {
+  transition: 0.2s;
+}
 .calendar .calendar_head span {
   opacity: 0.6;
 }
@@ -293,11 +296,23 @@
 .calendar .calendar_head .calendar_navigation button.right {
   transform: scale(-1);
 }
+.calendar .calendar_load {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color-light);
+  opacity: 0.6;
+}
 .calendar .calendar_grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: auto;
   gap: 2px;
+  transition: 0.2s;
+  background-color: var(--background);
 }
 @media (max-width: 768px) {
   .calendar .calendar_grid {
@@ -406,7 +421,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: -1;
-  transition: 0.5s;
+  transition: background-color 0.2s linear 0.2s, transform 0.5s;
 }
 .calendar .calendar_grid .calendar_item.active p {
   color: var(--text-color-dark);

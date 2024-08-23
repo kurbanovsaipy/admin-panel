@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/check-box.css';
+import './css/input.css';
 
 const ChechBox = ({title, value, setValue}) => {
     return (

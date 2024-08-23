@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Store from '../../Store';
 import defaultImg from './images/default.svg';
-import './css/popup.css';
-import ChechBox from '../check-box/ChechBox';
+import ChechBox from '../input/ChechBox';
 import Input from '../input/Input';
 import Button from '../button/Button';
+import './css/popups.css'
+import TextArea from '../input/TextArea';
 
 
 const MainPopUp = () => {
@@ -12,7 +13,8 @@ const MainPopUp = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [data, setData] = useState({
         title: 'Категория ремни',
-        image: null,
+        image: true,
+        imagePreview: null,
         form: [
             {
                 placeholder: 'Название категории',
@@ -23,7 +25,7 @@ const MainPopUp = () => {
                 placeholder: 'Изображение',
                 value: '',
                 type: 'file'
-            },
+            }
         ],
     })
 
@@ -40,8 +42,16 @@ const MainPopUp = () => {
     }
     
     const previewImg = (e) => {
-        setInput(prev => ({...prev, image: e.target.files[0]}))
-        setImage(URL.createObjectURL(e.target.files[0]))
+        setData((prev) => ({...prev, form: prev.form.map((el) => {
+            if(el.placeholder === 'Изображение') {
+                return {
+                    ...el, value: e.target.files[0]
+                }
+            } else {    
+                return el
+            }
+        })}))
+        setData(prev => ({...prev, imagePreview: URL.createObjectURL(e.target.files[0])}))
     }
 
     const changeValue = (placeholder, value) => {
@@ -68,8 +78,11 @@ const MainPopUp = () => {
                         {data.form.map((el) => (
 
                             <div className="input_wrapper">
-                                {el.type === 'checkbox' 
+                                {el.type === 'file'?<></>
+                                :el.type === 'checkbox'
                                 ?<ChechBox title={el.placeholder} value={el.value} setValue={changeValue}/>
+                                :el.type === 'textarea'
+                                ?<TextArea value={el.value} changeValue={changeValue} placeholder={el.placeholder}/>
                                 :<Input type={el.type} value={el.value} placeholder={el.placeholder} changeValue={changeValue}/>}
                             </div>
 
@@ -77,21 +90,24 @@ const MainPopUp = () => {
                     </div>
                     <Button title={'Сохранить'}/>
                 </div>
-
-                <div className="cover">
-                    <div className="image_input">
-                        <label htmlFor="input_image">
-                            <input id='input_image' type="file" onChange={previewImg}/>
-                            {image ? <img src={image} alt="" className="cover_image" /> : <img src={defaultImg} alt="" className="default_image" />}
-                        </label>
+                    
+                {data.image ? 
+                    <div className="cover">
+                        <div className="image_input">
+                            <label htmlFor="input_image">
+                                <input id='input_image' type="file" onChange={previewImg}/>
+                                {data.imagePreview ? <img src={data.imagePreview} alt="" className="cover_image" /> : <img src={defaultImg} alt="" className="default_image" />}
+                            </label>
+                        </div>
+                        <div className="file_input">
+                            <label htmlFor="input_file">
+                                <input id='input_file' type="file" onChange={previewImg}/>
+                                <div className='file_button'></div>
+                            </label>
+                        </div>
                     </div>
-                    <div className="file_input">
-                        <label htmlFor="input_file">
-                            <input id='input_file' type="file" onChange={previewImg}/>
-                            <div className='file_button'></div>
-                        </label>
-                    </div>
-                </div>
+                :<></>}
+                
 
             </form>
         </div>

@@ -28,4 +28,37 @@
 }
 .main_input.area::-webkit-scrollbar {
   width: 0px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  border: 1px solid transparent;
+  gap: 10px;
+}
+.checkbox span {
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+  border: 2px solid var(--text-color-light);
+  transition: 0.3s;
+}
+.checkbox p {
+  transition: 0.3s;
+}
+.checkbox:hover p {
+  color: var(--main-color);
+}
+.checkbox:hover span {
+  border: 2px solid var(--main-color);
+}
+.checkbox.active p {
+  color: var(--main-color);
+}
+.checkbox.active span {
+  border: 2px solid var(--main-color);
+  background-color: var(--main-color);
 }/*# sourceMappingURL=input.css.map */
