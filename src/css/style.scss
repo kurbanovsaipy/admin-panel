@@ -10,6 +10,9 @@
     --text-color-light: #fff;
     --text-color-dark: #131313;
     --main-font: "Raleway", sans-serif;
+    --done: #590cb3;
+    --in-progress: rgb(238, 111, 27);
+    --new: #00e6ee;
 }
 
 *{
@@ -78,7 +81,7 @@ input:-webkit-autofill:focus {
 
 .container {
     min-height: 100dvh;
-    padding: 100px 20px 100px 20px;
+    padding: 100px 20px 20px 20px;
 }
 
 .main_button {
