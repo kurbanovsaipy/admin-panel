@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     min-height: 100dvh;
     @include adaptiveProperty(padding, 20, 10);
     display: flex;
@@ -15,6 +16,7 @@
     z-index: 10000;
     transform: translateY(-100%);
     transition: 0.7s;
+    overflow: auto;
     &.show {
         animation: Open 0.5s forwards;
     }
@@ -315,5 +317,101 @@
                 min-height: 60px;
             }
         }
+    }
+}
+
+/*----------- Попап для превью заказов ----------*/
+.orders_popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    display: flex;
+    flex-wrap: wrap-reverse;
+    overflow: auto;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: 0.7s;
+    &.show {
+        animation: OpenOrder 0.5s forwards;
+    }
+    &.close {
+        animation: CloseOrder 0.5s forwards;
+    }
+    .product_list {
+        @include adaptiveProperty(padding, 30, 20);
+        flex: 6;
+    }
+    .order_info {
+        position: relative;
+        background: var(--grey);
+        flex: 3;
+        min-width: 300px;
+        @include adaptiveProperty(padding, 30, 20);
+        display: flex;
+        flex-direction: column;
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        .title {
+            @include adaptiveFont(25, 20);
+            @include adaptiveProperty(margin-bottom, 40, 20);
+        }
+        .info_field {
+            @include adaptiveProperty(margin-bottom, 20, 15);
+            .label {
+                opacity: 0.5;
+                @include adaptiveFont(14, 12);
+                margin-bottom: 4px;
+            }
+            p {
+                @include adaptiveFont(18, 16);
+            }
+        }
+
+        .main_info {
+            @include adaptiveFont(25, 20);
+            margin-bottom: 10px;
+        }
+
+        .order_price {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            h4 {
+                text-transform: uppercase;
+                @include adaptiveFont(50, 35);
+            }
+            p {
+                @include adaptiveFont(30, 20);
+            }
+        }
+    }
+}
+
+@keyframes OpenOrder {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {  
+        transform: translateX(0);
+    }
+}
+
+@keyframes CloseOrder {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
     }
 }

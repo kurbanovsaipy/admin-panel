@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/header/Header';
 import Orders from './pages/orders/Orders';
-import Magazine from './pages/magazine/Magazine';
 import Categories from './pages/categories/Categories';
 import Home from './pages/home/Home';
+import Products from './pages/products/Products';
 
 const MainContainer = () => {
 
@@ -14,8 +14,8 @@ const MainContainer = () => {
             <Routes>
                 <Route path='/' element={<Home />}/>
                 <Route path='/orders' element={<Orders />}/>
-                <Route path='/store' element={<Magazine />}/>
                 <Route path='/categories' element={<Categories />}/>
+                <Route path='/products' element={<Products />}/>
             </Routes>
         </div>
     );

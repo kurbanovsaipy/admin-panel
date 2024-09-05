@@ -35,7 +35,7 @@ const MainPopUp = () => {
     const closePopUp = () => {
         document.querySelector('html').style.overflow = 'visible'
         setIsOpen('close')
-        setData({})
+        //setData({})
         // setTimeout(() => {
         //     setIsOpen(false)
         // }, 500)

@@ -10,7 +10,7 @@
     --text-color-light: #fff;
     --text-color-dark: #131313;
     --main-font: "Raleway", sans-serif;
-    --done: #590cb3;
+    --done: #7528cc;
     --in-progress: rgb(238, 111, 27);
     --new: #00e6ee;
 }
@@ -80,61 +80,15 @@ input:-webkit-autofill:focus {
 }
 
 .container {
+    position: relative;
     min-height: 100dvh;
     padding: 100px 20px 20px 20px;
-}
-
-.main_button {
-    position: relative;
-    color: var(--text-color-light);
-    border: 2px solid var(--main-color);
-    background: transparent;
-    @include adaptiveProperty(padding-top, 10, 7);
-    @include adaptiveProperty(padding-bottom, 10, 7);
-    @include adaptiveProperty(padding-left, 60, 40);
-    @include adaptiveProperty(padding-right, 60, 40);
-    @include adaptiveFont(16, 14);
-    width: max-content;
-    white-space: nowrap;
-    transition: 0.3s;
-    text-align: center;
-    font-weight: 800;
-    cursor: pointer;
-    &.white {
-      color: var(--text-color-light);
-      border: 2px solid white;
-    }
-    &.cross {
-      padding: 5px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    & a {
-        text-decoration: none;
-        color: var(--text-color-light);
-        transition: 0.3s;
-    }
-    @include mediaMinWidth(993) {
-      &:hover {
-          color: var(--text-color-dark);
-          background: var(--main-color);
-          & a {
-              color: var(--background);
-          }
-      }
-    }
-    @include mediaMaxWidth(992) {
-      &:active {
-          color: var(--text-color-dark);
-          background: var(--main-color);
-          & a {
-              color: var(--background);
-          }
-      }
-    }
+    @include adaptiveProperty(padding-left, 20, 10);
+    @include adaptiveProperty(padding-right, 20, 10);
+    @include adaptiveProperty(padding-bottom, 20, 10);
+    @include adaptiveProperty(padding-top, 100, 80);
+    opacity: 0;
+    animation: OpenContainer 0.8s forwards;
 }
 
 .main_label {
@@ -202,6 +156,46 @@ input:-webkit-autofill:focus {
     height: 100dvh;
 }
 
+.main_cross {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 2;
+    @include mediaMinWidth(992) {
+        &:hover {
+            &::before,
+            &::after {
+                background-color: var(--main-color);
+            }
+        }
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color-light);
+        transition: 0.3s;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color-light);
+        transition: 0.3s;
+    }
+}
+
 @keyframes Open {
     0% {
         transform: translateY(-100%);
@@ -217,5 +211,14 @@ input:-webkit-autofill:focus {
     }
     100% {
         transform: translateY(-100%);
+    }
+}
+
+@keyframes OpenContainer {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

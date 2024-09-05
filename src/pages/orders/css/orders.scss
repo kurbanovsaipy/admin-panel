@@ -2,203 +2,280 @@
 
 .orders {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
+    flex-direction: column;
     .title {
+        position: relative;
         @include adaptiveFont(22, 18);
         height: 40px;
         display: flex;
         align-items: center;
     }
-    .new_orders {
-        flex: 2;
-        background-color: var(--grey);
+    .order_statistics {
         border-radius: 20px;
         width: 100%;
-        min-width: 300px;
-        overflow: auto;
+        background-color: var(--grey);
         @include adaptiveProperty(padding, 20, 10);
-        .new_order_header {
-            width: 100%;
+        display: flex;
+        flex-direction: column;
+        .statistic_wrapper {
+            flex: 1;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            p {
-                width: max-content;
-                min-width: 40px;
-                padding: 10px;
-                border-radius: 10px;
-                background-color: var(--background);
-                @include adaptiveFont(18, 16);
-            }
-        }
-        .new_order_list {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            .new_order_list_item {
-                width: 100%;
-                padding: 10px 5px 10px 5px;
-                height: 50px;
-                background-color: var(--background);
-                border-radius: 25px;
+            flex-wrap: wrap;
+            column-gap: 10px;
+            row-gap: 20px;
+            .all_orders {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                gap: 10px;
-                cursor: pointer;
-                transition: 0.4s;
-                &:hover {
-                    background-color: var(--new);
-                    color: var(--background);
-                    font-weight: 600;
-                }
-                .numder {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    background-color: var(--grey);
+                justify-content: center;
+                min-width: 220px;
+                .all_orders_wrapper {
+                    position: relative;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    font-weight: 500;
-                    color: var(--text-color-light);
-                }
-                .user {
-                    .name {
-                        @include adaptiveFont(14, 12);
-                    }
-                    .price {
-                        margin-top: 3px;
-                        @include adaptiveFont(13, 11);
+                    width: 180px;
+                    height: 180px;
+                    h3 {
+                        @include adaptiveFont(16, 14);
                         opacity: 0.6;
                     }
+                    p {
+                        @include adaptiveFont(32, 18);
+                    }
+                    svg {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) rotate(-90deg);
+                        z-index: 10;
+                    }
+                    .order_circle {
+                        background-color: transparent;
+                        fill: transparent;
+                        stroke-width: 40px;
+                        stroke-width: 20px;
+                        stroke-linecap: round;
+                        &.all {
+                            stroke: var(--main-color);
+                        }
+                        &.done {
+                            stroke: var(--done);
+                        }
+                        &.in_progress {
+                            stroke: var(--in-progress);
+                        }
+                        &.new {
+                            stroke: var(--new);
+                        }
+                        &.back {
+                            stroke: var(--background);
+                        }
+                    }
                 }
-                .products {
-                    margin-left: auto;
+            }
+
+            .graphic {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .graphic_list {
                     display: flex;
                     align-items: center;
-                    flex-direction: row-reverse;
-                    .products_item {
+                    height: 200px;
+                    gap: 15px;
+                    .scale {
                         position: relative;
-                        margin-left: -20px;
-                        width: 40px;
-                        height: 40px;
-                        overflow: hidden;
-                        border-radius: 50%;
-                        border: 3px solid var(--grey);
-                        &.more {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background-color: var(--grey);
-                            color: var(--text-color-light);
-                            font-weight: 400;
+                        width: 30px;
+                        border-radius: 15px;
+                        transition: 0.5s;
+                        &.done {
+                            background-color: var(--done);
                         }
+                        &.in_progress {
+                            background-color: var(--in-progress);
+                        }
+                        &.new {
+                            background-color: var(--new);
+                        }
+                        .count {
+                            position: absolute;
+                            top: 0;
+                            left: 50%;
+                            transform: translate(-50%, calc(-100% - 8px));
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                .appointments {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    p {
+                        position: relative;
+                        padding-left: 16px;
                         &::before {
                             content: '';
                             position: absolute;
-                            top: 0;
+                            top: 50%;
+                            transform: translateY(-50%);
                             left: 0;
-                            width: 100%;
-                            height: 100%;
-                            //background-color: rgba($color: #000000, $alpha: 0.3);
-                            z-index: 2;
+                            width: 12px;
+                            height: 12px;
+                            background-color: #fff;
+                            border-radius: 2px;
                         }
-                        img {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            object-position: center;
+                        &.done::before {
+                            background-color: var(--done);
                         }
+                        &.in_progress::before {
+                            background-color: var(--in-progress);
+                        }
+                        &.new::before {
+                            background-color: var(--new);
+                        }
+                        // &.done {
+                        //     color: var(--done);
+                        // }
+                        // &.in_progress {
+                        //     color: var(--in-progress);
+                        // }
+                        // &.new {
+                        //     color: var(--new);
+                        // }
                     }
                 }
             }
         }
     }
+
     .orders_panel {
-        flex: 4;
-        border-radius: 20px;
-        width: 100%;
-        min-width: 300px;
+        flex: 2;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 10px;
-        .order_statistics {
+        .orders_panel_item {
+            flex: 1;
+            background-color: var(--grey);
             border-radius: 20px;
             width: 100%;
-            flex: 2;
-            background-color: var(--grey);
+            min-width: 300px;
+            overflow: auto;
             @include adaptiveProperty(padding, 20, 10);
-            display: flex;
-            flex-direction: column;
-            .statistic_wrapper {
-                flex: 1;
+            .order_header {
+                width: 100%;
                 display: flex;
+                align-items: center;
                 justify-content: space-between;
-                flex-wrap: wrap;
-                column-gap: 10px;
-                row-gap: 20px;
-                .all_orders {
-                    display: flex;
-                    flex-direction: column;
+                gap: 10px;
+                h2 {
+                    padding-left: 22px;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        transform: translateY(-50%);
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 50%;
+                        background-color: var(--main-color);
+                    }
+                    &.done::before {
+                        background-color: var(--done);
+                    }
+                    &.in_progress::before {
+                        background-color: var(--in-progress);
+                    }
+                    &.new::before {
+                        background-color: var(--new);
+                    }
+                }
+                p {
+                    width: max-content;
+                    min-width: 40px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: var(--background);
+                    @include adaptiveFont(18, 16);
+                }
+            }
+            .order_list {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .order_list_head {
+                    width: 100%;
+                    padding: 0px 15px 0px 5px;
+                    display: grid;
+                    grid-template-columns: 40px 1fr auto;
                     align-items: center;
-                    justify-content: center;
-                    min-width: 220px;
-                    .all_orders_wrapper {
-                        position: relative;
+                    @include adaptiveFont(16, 14);
+                    font-weight: 600;
+                    white-space: nowrap;
+                    @include adaptiveProperty(gap, 20, 10);
+                    .name {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                    .number {
+                        text-align: center;
+                    }
+                }
+                .order_list_item {
+                    width: 100%;
+                    padding: 5px 15px 5px 5px;
+                    height: 50px;
+                    background-color: var(--background);
+                    border-radius: 35px;
+                    display: grid;
+                    grid-template-columns: 40px 1fr auto;
+                    align-items: center;
+                    @include adaptiveProperty(gap, 20, 10);
+                    cursor: pointer;
+                    transition: 0.4s;
+                    overflow: hidden;
+                    color: var(--text-color-light);
+                    @include mediaMinWidth(992) {
+                        &.new:hover {
+                            background-color: var(--new);
+                            color: var(--background);
+                        }
+                        &.in_progress:hover {
+                            background-color: var(--in-progress);
+                            color: var(--background);
+                        }
+                        &.done:hover {
+                            background-color: var(--done);
+                            color: var(--background);
+                        }
+                    }
+                    .number {
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: var(--grey);
                         display: flex;
-                        flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        width: 180px;
-                        height: 180px;
-                        h3 {
-                            @include adaptiveFont(16, 14);
-                            opacity: 0.6;
-                        }
-                        p {
-                            @include adaptiveFont(32, 18);
-                        }
-                        svg {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%) rotate(-90deg);
-                            z-index: 10;
-                        }
-                        .order_circle {
-                            background-color: transparent;
-                            fill: transparent;
-                            stroke-width: 40px;
-                            stroke-width: 20px;
-                            stroke-linecap: round;
-                            &.all {
-                                stroke: var(--main-color);
-                            }
-                            &.done {
-                                stroke: var(--done);
-                            }
-                            &.in_progress {
-                                stroke: var(--in-progress);
-                            }
-                            &.new {
-                                stroke: var(--new);
-                            }
-                            &.back {
-                                stroke: var(--background);
-                            }
+                        font-weight: 600;
+                        color: var(--text-color-light);
+                    }
+                    .order_list_column {
+                        @include adaptiveFont(16, 14);
+                        font-weight: 600;
+                        white-space: nowrap;
+                        &.name {
+                            text-overflow: ellipsis;
+                            overflow: hidden;
                         }
                     }
                 }
             }
         }
-        .orders_list {
-            flex: 4;
-        }
+        
     }
 }

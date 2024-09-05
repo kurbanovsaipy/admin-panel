@@ -6,6 +6,7 @@ import Calendar from './components/popups/Calendar';
 import useMain from './useMain';
 import Loading from './components/loading/Loading';
 import MainPopUp from './components/popups/MainPopUp';
+import Orders from './components/popups/Orders';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           {/*---- Всплывающие окна -----*/}
           <Calendar />
           <MainPopUp />
+          <Orders />
 
         </div>
       :

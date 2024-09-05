@@ -6,16 +6,16 @@
     border: 2px solid var(--main-color);
     border-radius: 10px;
     background: transparent;
-    @include adaptiveProperty(padding-top, 10, 7);
-    @include adaptiveProperty(padding-bottom, 10, 7);
-    @include adaptiveProperty(padding-left, 60, 40);
-    @include adaptiveProperty(padding-right, 60, 40);
+    @include adaptiveProperty(padding-top, 15, 10);
+    @include adaptiveProperty(padding-bottom, 15, 10);
+    @include adaptiveProperty(padding-left, 60, 30);
+    @include adaptiveProperty(padding-right, 60, 30);
     @include adaptiveFont(16, 14);
     width: max-content;
     white-space: nowrap;
     transition: 0.3s;
     text-align: center;
-    font-weight: 800;
+    font-weight: 600;
     cursor: pointer;
     &.white {
       color: var(--text-color-light);
@@ -33,6 +33,10 @@
         text-decoration: none;
         color: var(--text-color-light);
         transition: 0.3s;
+    }
+    &.fill {
+      background-color: var(--grey);
+      border: 0px;
     }
     @include mediaMinWidth(993) {
       &:hover {
