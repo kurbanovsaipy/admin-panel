@@ -5,6 +5,7 @@ import Orders from './pages/orders/Orders';
 import Categories from './pages/categories/Categories';
 import Home from './pages/home/Home';
 import Products from './pages/products/Products';
+import Users from './pages/users/Users';
 
 const MainContainer = () => {
 
@@ -16,6 +17,7 @@ const MainContainer = () => {
                 <Route path='/orders' element={<Orders />}/>
                 <Route path='/categories' element={<Categories />}/>
                 <Route path='/products' element={<Products />}/>
+                <Route path='/users' element={<Users />}/>
             </Routes>
         </div>
     );

@@ -119,6 +119,11 @@ input:-webkit-autofill:focus {
 .main_wrapper .main_container {
   position: relative;
 }
+@media screen and (max-width: 768px) {
+  .main_wrapper {
+    grid-template-columns: auto;
+  }
+}
 
 .container {
   position: relative;

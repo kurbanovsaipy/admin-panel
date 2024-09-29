@@ -77,6 +77,9 @@ input:-webkit-autofill:focus {
     .main_container {
         position: relative;
     }
+    @include mediaMaxWidth(768) {
+        grid-template-columns: auto;
+    }
 }
 
 .container {

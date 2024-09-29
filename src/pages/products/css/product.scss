@@ -11,10 +11,19 @@
         flex-wrap: wrap;
         margin-bottom: 30px;
         @include adaptiveProperty(gap, 20, 10);
+        @include mediaMaxWidth(420) {
+            flex-direction: column;
+            align-items: self-start;
+            gap: 30px;
+        }
         .button_block {
             width: max-content;
             display: flex;
             align-items: center;
+            @include mediaMaxWidth(420) {
+                width: 100%;
+                justify-content: space-between;
+            }
             @include adaptiveProperty(gap, 20, 10);
             .get_filter {
                 @include mediaMinWidth(992) {
@@ -22,6 +31,67 @@
                     cursor: pointer;
                     &:hover {
                         color: var(--main-color);
+                    }
+                }
+            }
+            .sorting {
+                position: relative;
+                width: max-content;
+                p {
+                    display: flex;
+                    align-items: center;
+                    gap: 3px;
+                    cursor: pointer;
+                    svg {
+                        width: 15px;
+                        transform: rotate(180deg);
+                        transition: 0.3s;
+                        .main_icon_path {
+                            path {
+                                stroke: #fff;
+                            }
+                        }
+                        &.active {
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+                .sorting_list {
+                    position: absolute;
+                    bottom: -10px;
+                    right: 0;
+                    width: max-content;
+                    background-color: var(--grey);
+                    z-index: 50;
+                    transform: translateY(100%);
+                    overflow: hidden;
+                    height: 0px;
+                    transition: 0.3s;
+                    transition-delay: 0.3s;
+                    border-radius: 5px;
+                    .sorting_list_wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        padding: 20px 15px;
+                        opacity: 0;
+                        transition: 0.3s;
+                        transition-delay: 0s;
+                    }
+                    .sorting_list_item {
+                        font-size: 13px;
+                        padding-bottom: 3px;
+                        &.active {
+                            border-bottom: 1px solid var(--text-color-light);
+                        }
+                    }
+                    &.active {
+                        transition-delay: 0s;
+                        height: 150px;
+                        .sorting_list_wrapper {
+                            transition-delay: 0.3s;
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -142,7 +212,7 @@
         flex-direction: column;
         gap: 5dvh;
         transform: translateX(100%);
-        transition: 0.8s;
+        transition: 0.5s;
         &.open {
             transform: translateX(0)
         }
