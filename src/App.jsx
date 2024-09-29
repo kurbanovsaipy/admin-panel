@@ -2,28 +2,46 @@ import React from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import MainContainer from './MainContainer';
-import NotesPopUp from './components/popups/NotesPopUp';
-import CategoriesPopUp from './components/popups/CategoriesPopUp';
+import Calendar from './components/popups/Calendar';
+import useMain from './useMain';
+import Loading from './components/loading/Loading';
+import MainPopUp from './components/popups/MainPopUp';
+import Orders from './components/popups/Orders';
+import Notes from './components/popups/Notes';
+import Categories from './components/popups/Categories';
 
 
 const App = () => {
 
+  const main = useMain()
+
   return (
-    <div className='main_wrapper'>
+    <>
+      {main.load ? 
+        <div className='main_wrapper'>
 
-      <Router>
-        
-        <Dashboard />
+          <Router>
+            
+            <Dashboard />
 
-        <MainContainer />
+            <MainContainer />
 
-      </Router>
+          </Router>
 
-      {/*---- Всплывающие окна -----*/}
-      <NotesPopUp />
-      <CategoriesPopUp />
+          {/*---- Всплывающие окна -----*/}
+          <Calendar />
+          <MainPopUp />
+          <Orders />
+          <Notes />
+          <Categories />
 
-    </div>
+        </div>
+      :
+        <div className="main_loading">
+          <Loading />
+        </div>
+      }
+    </>
   );
 };
 

@@ -1,0 +1,59 @@
+@import './../../../css/common';
+
+.main_button {
+    position: relative;
+    color: var(--text-color-light);
+    border: 2px solid var(--main-color);
+    border-radius: 10px;
+    background: transparent;
+    @include adaptiveProperty(padding-top, 15, 10);
+    @include adaptiveProperty(padding-bottom, 15, 10);
+    @include adaptiveProperty(padding-left, 60, 30);
+    @include adaptiveProperty(padding-right, 60, 30);
+    @include adaptiveFont(16, 14);
+    width: max-content;
+    white-space: nowrap;
+    transition: 0.3s;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    &.white {
+      color: var(--text-color-light);
+      border: 2px solid white;
+    }
+    &.cross {
+      padding: 5px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & a {
+        text-decoration: none;
+        color: var(--text-color-light);
+        transition: 0.3s;
+    }
+    &.fill {
+      background-color: var(--grey);
+      border: 0px;
+    }
+    @include mediaMinWidth(993) {
+      &:hover {
+          color: var(--text-color-dark);
+          background: var(--main-color);
+          & a {
+              color: var(--background);
+          }
+      }
+    }
+    @include mediaMaxWidth(992) {
+      &:active {
+          color: var(--text-color-dark);
+          background: var(--main-color);
+          & a {
+              color: var(--background);
+          }
+      }
+    }
+}

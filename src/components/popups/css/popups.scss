@@ -1,2 +1,417 @@
 @import './../../../css/common';
 
+/* ---------Основной попап---------- */
+.main_popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    @include adaptiveProperty(padding, 20, 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    z-index: 10000;
+    transform: translateY(-100%);
+    transition: 0.7s;
+    overflow: auto;
+    &.show {
+        animation: Open 0.5s forwards;
+    }
+    &.close {
+        animation: Close 0.5s forwards;
+    }
+    .popup_form {
+        background-color: var(--grey);
+        border-radius: 20px;
+        width: 100%;
+        max-width: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        .panel {
+            flex: 5;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            @include adaptiveProperty(padding-top, 25, 20);
+            @include adaptiveProperty(padding-bottom, 25, 20);
+            @include adaptiveProperty(padding-left, 15, 10);
+            @include adaptiveProperty(padding-right, 15, 10);
+            min-height: 50dvh;
+            .title {
+                @include adaptiveFont(32, 25);
+            }
+            .form_content {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 80%;
+                .ckeck-box_block {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    grid-auto-rows: auto;
+                    gap: 10px;
+                }
+            }
+        }
+        .cover {
+            position: relative;
+            flex: 3;
+            min-width: 300px;
+            min-height: 200px;
+            background-color: var(--background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .default_image {
+                display: block;
+                width: 100%;
+                max-width: 200px;
+                cursor: pointer;
+            }
+            .image_input {
+                input {
+                    width: 0;
+                    height: 0;
+                }
+                .cover_image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    z-index: 1;
+                    cursor: pointer;
+                }
+            }
+            .file_input {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                z-index: 3;
+                padding: 10px;
+                input {
+                    width: 0;
+                    height: 0;
+                }
+                .file_button {
+                    cursor: pointer;
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid var(--main-color);
+                    border-radius: 50%;
+                    transition: 0.3s;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 2px;
+                        height: 60%;
+                        background-color: var(--text-color-light);
+                        transition: 0.3s;
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 60%;
+                        height: 2px;
+                        background-color: var(--text-color-light);
+                        transition: 0.3s;
+                    }
+                    &:hover {
+                        background-color: var(--main-color);
+                        &::before {
+                            background-color: var(--background);
+                        }
+                        &::after {
+                            background-color: var(--background);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*--------Календарь--------*/
+.calendar {
+    width: 100%;
+    max-width: 1000px;
+    background-color: var(--background);
+    border-radius: 30px;
+    @include adaptiveProperty(padding-top, 50, 25);
+    @include adaptiveProperty(padding-left, 30, 10);
+    @include adaptiveProperty(padding-right, 30, 10);
+    @include adaptiveProperty(padding-bottom, 30, 15);
+    .calendar_head {
+        @include adaptiveFont(40, 30);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        h2 {
+            transition: 0.2s;
+        }
+        span {
+            opacity: 0.6;
+        }
+        .calendar_navigation {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                transition: 0.4s;
+                background-color: var(--grey);
+                &:hover {
+                    background-color: var(--main-color);
+                }
+                svg {
+                    width: 22px;
+                    height: 22px;
+                    .main_icon_path {
+                        path {
+                            stroke: var(--text-color-light);
+                        }
+                    }
+                }
+                &.right {
+                    transform: scale(-1);
+                }
+            }
+        }
+    }
+
+    .calendar_load {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--text-color-light);
+        opacity: 0.6;
+    }
+
+    .calendar_grid {
+        position: relative;
+        z-index: 2;
+        @include adaptiveProperty(margin-top, 30, 20);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-auto-rows: auto;
+        gap: 2px;
+        transition: 0.2s;
+        background-color: var(--background);
+        .day {
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 600;
+            @include adaptiveProperty(margin-bottom, 20, 15);
+            &.weekend {
+                color: var(--blue);
+            }
+            .main {
+                @include adaptiveFont(13, 11);
+                @include mediaMaxWidth(768) {
+                    display: none;
+                }
+            }
+            .short {
+                font-size: 14px;
+                @include mediaMinWidth(769) {
+                    display: none;
+                }
+            }
+        }
+        .plug {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: var(--grey);
+            }
+            @include mediaMaxWidth(768) {
+                min-height: 60px;
+            }
+        }
+        .calendar_item {
+            position: relative;
+            padding: 15px;
+            min-height: 100px;
+            transition: 0.4s;
+            overflow: hidden;
+            cursor: pointer;
+            @include adaptiveFont(18, 16);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+                position: relative;
+                width: max-content;
+                z-index: 2;
+                transition: 0.8s;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 40px;
+                    height: 40px;
+                    transform: translate(-50%, -50%);
+                    border-radius: 50%;
+                    z-index: -1;
+                    transition: background-color 0.2s linear 0.2s, transform 0.5s;
+                }
+            }
+            &.active {
+                p {
+                    color: var(--text-color-dark);
+                    font-weight: 500;
+                    &::before {
+                        background-color: var(--main-color);
+                    }
+                }
+                @include mediaMinWidth(992) {
+                    &:hover {
+                        box-shadow: 0px 0px 0px 0px rgba($color: #000000, $alpha: 0.8);
+                        p::before {
+                            transform: scale(6);
+                        }
+                    }
+                }
+            }
+            @include mediaMinWidth(992) {
+                &:hover {
+                    box-shadow: 0px 0px 10px -2px rgba($color: #000000, $alpha: 0.8);
+                    p::before {
+                        transform: scale(6);
+                    }
+                }
+            }
+            @include mediaMaxWidth(768) {
+                min-height: 60px;
+            }
+        }
+    }
+}
+
+/*----------- Попап для превью заказов ----------*/
+.orders_popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    display: flex;
+    flex-wrap: wrap-reverse;
+    overflow: auto;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: 0.7s;
+    &.show {
+        animation: OpenOrder 0.5s forwards;
+    }
+    &.close {
+        animation: CloseOrder 0.5s forwards;
+    }
+    .product_list {
+        @include adaptiveProperty(padding, 30, 20);
+        flex: 6;
+    }
+    .order_info {
+        position: relative;
+        background: var(--grey);
+        flex: 3;
+        min-width: 300px;
+        @include adaptiveProperty(padding, 30, 20);
+        display: flex;
+        flex-direction: column;
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        .title {
+            @include adaptiveFont(25, 20);
+            @include adaptiveProperty(margin-bottom, 40, 20);
+        }
+        .info_field {
+            @include adaptiveProperty(margin-bottom, 20, 15);
+            .label {
+                opacity: 0.5;
+                @include adaptiveFont(14, 12);
+                margin-bottom: 4px;
+            }
+            p {
+                @include adaptiveFont(18, 16);
+            }
+        }
+
+        .main_info {
+            @include adaptiveFont(25, 20);
+            margin-bottom: 10px;
+        }
+
+        .order_price {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            h4 {
+                text-transform: uppercase;
+                @include adaptiveFont(50, 35);
+            }
+            p {
+                @include adaptiveFont(30, 20);
+            }
+        }
+    }
+}
+
+@keyframes OpenOrder {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {  
+        transform: translateX(0);
+    }
+}
+
+@keyframes CloseOrder {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

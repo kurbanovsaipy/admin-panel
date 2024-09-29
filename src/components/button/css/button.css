@@ -1,0 +1,105 @@
+@charset "UTF-8";
+/*-------------Миксины----------------*/
+.main_button {
+  position: relative;
+  color: var(--text-color-light);
+  border: 2px solid var(--main-color);
+  border-radius: 10px;
+  background: transparent;
+  width: -moz-max-content;
+  width: max-content;
+  white-space: nowrap;
+  transition: 0.3s;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .main_button {
+    padding-top: calc(10px + 8.5 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_button {
+    padding-top: calc(10px + 5 * 0.0520833333vw);
+  }
+}
+@media (max-width: 768px) {
+  .main_button {
+    padding-bottom: calc(10px + 8.5 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_button {
+    padding-bottom: calc(10px + 5 * 0.0520833333vw);
+  }
+}
+@media (max-width: 768px) {
+  .main_button {
+    padding-left: calc(30px + 51 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_button {
+    padding-left: calc(30px + 30 * 0.0520833333vw);
+  }
+}
+@media (max-width: 768px) {
+  .main_button {
+    padding-right: calc(30px + 51 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_button {
+    padding-right: calc(30px + 30 * 0.0520833333vw);
+  }
+}
+@media (max-width: 768px) {
+  .main_button {
+    font-size: calc(14px + 3.4 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .main_button {
+    font-size: calc(14px + 2 * 0.0520833333vw);
+  }
+}
+.main_button.white {
+  color: var(--text-color-light);
+  border: 2px solid white;
+}
+.main_button.cross {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_button a {
+  text-decoration: none;
+  color: var(--text-color-light);
+  transition: 0.3s;
+}
+.main_button.fill {
+  background-color: var(--grey);
+  border: 0px;
+}
+@media screen and (min-width: 993px) {
+  .main_button:hover {
+    color: var(--text-color-dark);
+    background: var(--main-color);
+  }
+  .main_button:hover a {
+    color: var(--background);
+  }
+}
+@media screen and (max-width: 992px) {
+  .main_button:active {
+    color: var(--text-color-dark);
+    background: var(--main-color);
+  }
+  .main_button:active a {
+    color: var(--background);
+  }
+}/*# sourceMappingURL=button.css.map */

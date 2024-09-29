@@ -4,14 +4,13 @@ import Store from '../../../Store';
 const Notes = () => {
 
     const openPopUp = () => {
+        document.body.style.overflow = 'hidden'
         Store.setListener('notes', 'show')
-        document.querySelector('html').style.overflow = 'hidden'
     }
 
-    const openUpdatePopUp = (id) => {
+    const openUpdatePopUp = () => {
         Store.setListener('notes', 'show')
-        Store.setListener('notes_id', id)
-        document.querySelector('html').style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden'
     }
 
     return (

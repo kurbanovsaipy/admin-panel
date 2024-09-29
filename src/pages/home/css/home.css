@@ -1,11 +1,15 @@
 @charset "UTF-8";
-/*-----------Цвеиа------------*/
 /*-------------Миксины----------------*/
 .home .vidgets {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   grid-auto-rows: auto;
   gap: 10px;
+}
+@media screen and (max-width: 556px) {
+  .home .vidgets {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 .home .vidgets .content {
   position: relative;
@@ -58,7 +62,7 @@
 }
 .home .vidgets .vidgets_item.notes .notes_list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) auto;
   grid-auto-rows: auto;
   gap: 10px;
   flex: 1;
@@ -176,6 +180,9 @@
     padding: calc(10px + 5 * 0.0520833333vw);
   }
 }
+.home .vidgets .vidgets_item .weather {
+  cursor: pointer;
+}
 .home .vidgets .vidgets_item .weather img {
   position: absolute;
   top: 0;
@@ -187,6 +194,10 @@
   -o-object-position: center;
      object-position: center;
   z-index: 1;
+  transition: 0.5s;
+}
+.home .vidgets .vidgets_item .weather:hover img {
+  transform: scale(1.05);
 }
 .home .vidgets .vidgets_item .weather .date {
   margin-bottom: 5px;
@@ -310,6 +321,7 @@
 .home .statistic {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background-color: var(--grey);
   border-radius: 20px;

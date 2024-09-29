@@ -10,6 +10,9 @@
     --text-color-light: #fff;
     --text-color-dark: #131313;
     --main-font: "Raleway", sans-serif;
+    --done: #7528cc;
+    --in-progress: rgb(238, 111, 27);
+    --new: #00e6ee;
 }
 
 *{
@@ -69,69 +72,26 @@ input:-webkit-autofill:focus {
 
 /*-------------------------------------*/
 .main_wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 5fr;
     .main_container {
         position: relative;
-        flex: 5;
+    }
+    @include mediaMaxWidth(768) {
+        grid-template-columns: auto;
     }
 }
 
 .container {
-    min-height: 100dvh;
-    padding: 100px 20px 100px 20px;
-}
-
-.main_button {
     position: relative;
-    color: var(--text-color-light);
-    border: 2px solid var(--main-color);
-    background: transparent;
-    @include adaptiveProperty(padding-top, 10, 7);
-    @include adaptiveProperty(padding-bottom, 10, 7);
-    @include adaptiveProperty(padding-left, 60, 40);
-    @include adaptiveProperty(padding-right, 60, 40);
-    @include adaptiveFont(16, 14);
-    width: max-content;
-    white-space: nowrap;
-    transition: 0.3s;
-    text-align: center;
-    font-weight: 800;
-    cursor: pointer;
-    &.white {
-      color: var(--text-color-light);
-      border: 2px solid white;
-    }
-    &.cross {
-      padding: 5px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    & a {
-        text-decoration: none;
-        color: var(--text-color-light);
-        transition: 0.3s;
-    }
-    @include mediaMinWidth(993) {
-      &:hover {
-          color: var(--text-color-dark);
-          background: var(--main-color);
-          & a {
-              color: var(--background);
-          }
-      }
-    }
-    @include mediaMaxWidth(992) {
-      &:active {
-          color: var(--text-color-dark);
-          background: var(--main-color);
-          & a {
-              color: var(--background);
-          }
-      }
-    }
+    min-height: 100dvh;
+    padding: 100px 20px 20px 20px;
+    @include adaptiveProperty(padding-left, 20, 10);
+    @include adaptiveProperty(padding-right, 20, 10);
+    @include adaptiveProperty(padding-bottom, 20, 10);
+    @include adaptiveProperty(padding-top, 100, 80);
+    opacity: 0;
+    animation: OpenContainer 0.8s forwards;
 }
 
 .main_label {
@@ -140,209 +100,6 @@ input:-webkit-autofill:focus {
     margin: 0 auto;
     width: max-content;
     display: block;
-}
-
-.main_input {
-    padding: 5px 0;
-    width: 100%;
-    background-color: transparent;
-    border-bottom: 2px solid var(--text-color-light);
-    display: block;
-    color: var(--text-color-light);
-    @include adaptiveFont(16, 14);
-    transition: 0.3s;
-    &:focus{
-        border-bottom: 2px solid var(--main-color);
-    }
-    &.active {
-        border-bottom: 2px solid var(--main-color);
-    }
-    &.area {
-        &::-webkit-scrollbar {
-            width: 0px;
-        }
-    }
-}
-
-.main_popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-    @include adaptiveProperty(padding, 20, 10);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba($color: #000000, $alpha: 0.7);
-    z-index: 10000;
-    transform: translateY(-100%);
-    transition: 0.7s;
-    &.show {
-        animation: Open 0.5s forwards;
-    }
-    &.close {
-        animation: Close 0.5s forwards;
-    }
-    .popup_form {
-        background-color: var(--grey);
-        border-radius: 20px;
-        width: 100%;
-        max-width: 1000px;
-        display: flex;
-        flex-wrap: wrap;
-        overflow: hidden;
-        .panel {
-            flex: 5;
-            min-width: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            @include adaptiveProperty(padding-top, 25, 20);
-            @include adaptiveProperty(padding-bottom, 25, 20);
-            @include adaptiveProperty(padding-left, 15, 10);
-            @include adaptiveProperty(padding-right, 15, 10);
-            min-height: 50dvh;
-            .title {
-                @include adaptiveFont(32, 25);
-            }
-            .form_content {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                width: 80%;
-                .ckeck-box_block {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                    grid-auto-rows: auto;
-                    gap: 10px;
-                    .checkbox {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 10px;
-                        cursor: pointer;
-                        transition: 0.5s;
-                        border: 1px solid transparent;
-                        gap: 10px;
-                        span {
-                            width: 20px;
-                            height: 20px;
-                            border-radius: 7px;
-                            border: 2px solid var(--text-color-light);
-                            transition: 0.3s;
-                        }
-                        p {
-                            transition: 0.3s;
-                        }
-                        &:hover {
-                            p {
-                                color: var(--main-color);
-                            }
-                            span {
-                                border: 2px solid var(--main-color);
-                            }
-                        }
-                        &.active {
-                            p {
-                                color: var(--main-color);
-                            }
-                            span {
-                                border: 2px solid var(--main-color);
-                                background-color: var(--main-color);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .cover {
-            position: relative;
-            flex: 3;
-            min-width: 300px;
-            min-height: 200px;
-            background-color: var(--background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .default_image {
-                display: block;
-                width: 100%;
-                max-width: 200px;
-                cursor: pointer;
-            }
-            .image_input {
-                input {
-                    width: 0;
-                    height: 0;
-                }
-                .cover_image {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                    z-index: 1;
-                    cursor: pointer;
-                }
-            }
-            .file_input {
-                position: absolute;
-                bottom: 10px;
-                right: 10px;
-                z-index: 3;
-                padding: 10px;
-                input {
-                    width: 0;
-                    height: 0;
-                }
-                .file_button {
-                    cursor: pointer;
-                    position: relative;
-                    width: 40px;
-                    height: 40px;
-                    border: 2px solid var(--main-color);
-                    border-radius: 50%;
-                    transition: 0.3s;
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 2px;
-                        height: 60%;
-                        background-color: var(--text-color-light);
-                        transition: 0.3s;
-                    }
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 60%;
-                        height: 2px;
-                        background-color: var(--text-color-light);
-                        transition: 0.3s;
-                    }
-                    &:hover {
-                        background-color: var(--main-color);
-                        &::before {
-                            background-color: var(--background);
-                        }
-                        &::after {
-                            background-color: var(--background);
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 .main_icon {
@@ -380,19 +137,67 @@ input:-webkit-autofill:focus {
             }
         }
     }
-    &:hover {
-        background-color: var(--main-color);
-        svg {
-            .moon {
-                fill: var(--text-color-dark);
-            }
-            .main_icon_path {
-                path,
-                circle {
-                    stroke: var(--text-color-dark);
+    @include mediaMinWidth(992) {
+        &:hover {
+            background-color: var(--main-color);
+            svg {
+                .moon {
+                    fill: var(--text-color-dark);
+                }
+                .main_icon_path {
+                    path,
+                    circle {
+                        stroke: var(--text-color-dark);
+                    }
                 }
             }
         }
+    }
+}
+
+.main_loading {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+}
+
+.main_cross {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 2;
+    @include mediaMinWidth(992) {
+        &:hover {
+            &::before,
+            &::after {
+                background-color: var(--main-color);
+            }
+        }
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color-light);
+        transition: 0.3s;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color-light);
+        transition: 0.3s;
     }
 }
 
@@ -411,5 +216,14 @@ input:-webkit-autofill:focus {
     }
     100% {
         transform: translateY(-100%);
+    }
+}
+
+@keyframes OpenContainer {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/*-------------Миксины----------------*/
+.users {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.users .user {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: var(--grey);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 1fr 30px;
+  align-items: center;
+  padding: 10px;
+}
+@media (max-width: 768px) {
+  .users .user {
+    gap: calc(10px + 8.5 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .users .user {
+    gap: calc(10px + 5 * 0.0520833333vw);
+  }
+}
+.users .user .name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.users .user .number {
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  font-size: 16px;
+  font-weight: 500;
+}
+.users .user .burger {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+@media screen and (min-width: 992px) {
+  .users .user .burger:hover {
+    background-color: var(--background);
+  }
+}
+.users .user .burger span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--text-color-light);
+}
+.users .user .user_nav {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  transform: translateY(100%);
+  width: -moz-max-content;
+  width: max-content;
+  background-color: var(--grey);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  transition: 0.3s;
+  transition-delay: 0.3s;
+  height: 0px;
+  overflow: hidden;
+  z-index: 50;
+}
+.users .user .user_nav .user_nav_wrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 13px;
+  transition: 0.3s;
+  transition-delay: 0s;
+  opacity: 0;
+}
+.users .user .user_nav .user_nav_wrapper p {
+  cursor: pointer;
+  transition: 0.3s;
+}
+@media screen and (min-width: 992px) {
+  .users .user .user_nav .user_nav_wrapper p:hover {
+    color: var(--main-color);
+  }
+}
+.users .user .user_nav.active {
+  transition-delay: 0s;
+  height: 90px;
+}
+.users .user .user_nav.active .user_nav_wrapper {
+  transition-delay: 0.3s;
+  opacity: 1;
+}/*# sourceMappingURL=users.css.map */

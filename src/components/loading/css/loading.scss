@@ -1,0 +1,103 @@
+:root {
+    --first: rgb(119, 16, 214);
+    --second: rgb(219, 94, 10);
+    --third: rgb(9, 187, 98);
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    .circle {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        opacity: 0.5;
+        margin-left: -7px;
+        &.first {
+            z-index: 1;
+            background-color: var(--first);
+            animation: First 3s infinite;
+        }
+        &.second {
+            z-index: 2;
+            background-color: var(--second);
+            animation: Second 3s infinite;
+        }
+        &.third {
+            z-index: 3;
+            background-color: var(--third);
+            animation: Third 3s infinite;
+        }
+    }
+}
+
+@keyframes First {
+    0% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+    10% {
+        transform: scale(0)
+    }
+    30% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    90% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    100% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+}
+
+@keyframes Second {
+    0% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+    30% {
+        transform: scale(0)
+    }
+    50% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    90% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    100% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+}
+
+@keyframes Third {
+    0% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+    50% {
+        transform: scale(0)
+    }
+    70% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    90% {
+        //opacity: 0.7;
+        transform: scale(1)
+    }
+    100% {
+        //opacity: 0;
+        transform: scale(0)
+    }
+}

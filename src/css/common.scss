@@ -1,5 +1,3 @@
-/*-----------Цвеиа------------*/
-$mainGrey: #1e1f24;
 /*-------------Миксины----------------*/
 @mixin adaptiveFont($maxFont, $minFont) {
     $addSize: $maxFont - $minFont;

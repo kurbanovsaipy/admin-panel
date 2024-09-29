@@ -1,28 +1,63 @@
 @charset "UTF-8";
-/*-----------Цвеиа------------*/
 /*-------------Миксины----------------*/
 .dashboard {
-  flex: 1;
+  position: sticky;
+  top: 0;
+  left: 0;
   background-color: var(--grey);
-  width: 100%;
-  min-height: 100dvh;
-  max-width: 500px;
+  padding: 20px;
+  padding-top: 30px;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 100;
+  transition: 1s;
+}
+@media (max-width: 768px) {
+  .dashboard {
+    width: calc(200px + 238 * (100vw - 320px) / 1920);
+  }
+}
+@media (min-width: 768px) {
+  .dashboard {
+    width: calc(200px + 140 * 0.0520833333vw);
+  }
+}
+@media screen and (max-width: 1300px) {
+  .dashboard {
+    transition: 1.3s;
+    transition-delay: 0.3s;
+    width: 100px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dashboard {
+    position: fixed;
+    width: 100%;
+    max-width: 500px;
+    transform: translateX(-100%);
+  }
+}
+.dashboard.hide {
+  width: 100px;
+  align-items: center;
+}
+.dashboard .dashboard_wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 30px;
-  transition: 1s;
-  padding: 20px;
-  padding-top: 30px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .dashboard .dashboard_header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .dashboard .dashboard_header h1 {
-  white-space: nowrap;
-  transition: 0.3s;
+  transition: 0s;
   width: 100%;
   overflow: hidden;
 }
@@ -39,20 +74,16 @@
 .dashboard .dashboard_header .main_icon {
   transform: scale(1);
 }
+@media screen and (max-width: 1300px) {
+  .dashboard .dashboard_header {
+    display: none;
+  }
+}
 .dashboard .navigation {
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-@media (max-width: 768px) {
-  .dashboard .navigation {
-    gap: calc(10px + 25.5 * (100vw - 320px) / 1920);
-  }
-}
-@media (min-width: 768px) {
-  .dashboard .navigation {
-    gap: calc(10px + 15 * 0.0520833333vw);
-  }
+  gap: 2dvh;
 }
 .dashboard .navigation a {
   display: flex;
@@ -82,6 +113,11 @@
     font-size: calc(16px + 4 * 0.0520833333vw);
   }
 }
+@media screen and (max-width: 1300px) {
+  .dashboard .navigation a p {
+    display: none;
+  }
+}
 .dashboard .navigation a svg {
   width: 20px;
   height: 20px;
@@ -90,6 +126,7 @@
 .dashboard .navigation a svg .icon path,
 .dashboard .navigation a svg .icon circle {
   stroke: var(--text-color-light);
+  transition: 0.4s;
 }
 .dashboard .navigation a.active {
   background-color: var(--background);
@@ -98,133 +135,57 @@
 .dashboard .navigation a.active svg .icon circle {
   stroke: var(--main-color);
 }
-.dashboard .navigation a:hover {
-  background-color: var(--background);
-}
-.dashboard .navigation a:hover svg .icon path,
-.dashboard .navigation a:hover svg .icon circle {
-  stroke: var(--main-color);
+@media screen and (min-width: 992px) {
+  .dashboard .navigation a:hover {
+    background-color: var(--background);
+  }
+  .dashboard .navigation a:hover svg .icon path,
+  .dashboard .navigation a:hover svg .icon circle {
+    stroke: var(--main-color);
+  }
 }
 .dashboard .bottom_panel {
   display: flex;
   align-items: flex-end;
   gap: 10px;
-  height: 140px;
 }
 .dashboard .bottom_panel .bottom_item {
   width: 35px;
   height: 35px;
 }
-
-.dashboard.hide {
-  max-width: 100px;
-}
-.dashboard.hide .dashboard_header {
-  animation: HideAnim 1s forwards;
-}
-.dashboard.hide .dashboard_header h1 {
-  animation: HideText 1s forwards;
-}
-.dashboard.hide .dashboard_header .main_icon {
-  animation: HideArrow 1s forwards;
-}
-.dashboard.hide .navigation a {
-  animation: HideAnim 1s forwards;
-}
-.dashboard.hide .navigation a p {
-  animation: HideText 1s forwards;
-}
-.dashboard.hide .bottom_panel {
-  animation: HideBottom 1s forwards;
+@media screen and (max-width: 1300px) {
+  .dashboard .bottom_panel {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.dashboard.open {
-  transition: 1.3s;
-  transition-delay: 0.3s;
-  max-width: 500px;
+.dashboard.hide .dashboard_wrapper {
+  animation: Hide 1.2s forwards;
 }
-.dashboard.open .dashboard_header {
-  animation: OpenAnim 1s forwards;
+.dashboard.hide .dashboard_wrapper .dashboard_header {
+  justify-content: center;
 }
-.dashboard.open .dashboard_header h1 {
-  animation: OpenText 1s forwards;
+.dashboard.hide .dashboard_wrapper .dashboard_header h1 {
+  display: none;
 }
-.dashboard.open .dashboard_header .main_icon {
-  animation: OpenArrow 1s forwards;
+.dashboard.hide .dashboard_wrapper .dashboard_header .main_icon {
+  transform: scale(-1);
 }
-.dashboard.open .navigation a {
-  animation: OpenAnim 1s forwards;
+.dashboard.hide .dashboard_wrapper .navigation p {
+  display: none;
 }
-.dashboard.open .navigation a p {
-  animation: OpenText 1s forwards;
-}
-.dashboard.open .bottom_panel {
-  animation: OpenBottom 1s forwards;
+.dashboard.hide .dashboard_wrapper .bottom_panel {
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes HideArrow {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  20% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  80% {
-    opacity: 0;
-    transform: scale(-1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(-1);
-  }
+.dashboard.open .dashboard_wrapper {
+  animation: OpenMenu 1.2s forwards;
 }
-@keyframes OpenArrow {
+
+@keyframes Hide {
   0% {
-    opacity: 1;
-    transform: scale(-1);
-  }
-  20% {
-    opacity: 0;
-    transform: scale(-1);
-  }
-  80% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes HideText {
-  0% {
-    display: block;
-  }
-  20% {
-    display: none;
-  }
-  100% {
-    display: none;
-  }
-}
-@keyframes OpenText {
-  0% {
-    display: none;
-  }
-  20% {
-    display: none;
-  }
-  100% {
-    display: block;
-  }
-}
-@keyframes HideAnim {
-  0% {
-    opacity: 1;
-  }
-  20% {
     opacity: 0;
   }
   80% {
@@ -234,11 +195,8 @@
     opacity: 1;
   }
 }
-@keyframes OpenAnim {
+@keyframes OpenMenu {
   0% {
-    opacity: 1;
-  }
-  20% {
     opacity: 0;
   }
   80% {
@@ -246,49 +204,5 @@
   }
   100% {
     opacity: 1;
-  }
-}
-@keyframes HideBottom {
-  0% {
-    opacity: 1;
-    flex-direction: row;
-    align-items: flex-end;
-  }
-  20% {
-    opacity: 0;
-    flex-direction: row;
-    align-items: flex-end;
-  }
-  80% {
-    opacity: 0;
-    flex-direction: column;
-    align-items: center;
-  }
-  100% {
-    opacity: 1;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-@keyframes OpenBottom {
-  0% {
-    opacity: 1;
-    flex-direction: column;
-    align-items: center;
-  }
-  20% {
-    opacity: 0;
-    flex-direction: column;
-    align-items: center;
-  }
-  80% {
-    opacity: 0;
-    flex-direction: row;
-    align-items: flex-end;
-  }
-  100% {
-    opacity: 1;
-    flex-direction: row;
-    align-items: flex-end;
   }
 }/*# sourceMappingURL=dashboard.css.map */
