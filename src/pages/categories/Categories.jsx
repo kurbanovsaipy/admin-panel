@@ -14,40 +14,8 @@ const Categories = () => {
     }
 
     const openCategoriesPopUp = () => {
-        document.querySelector('html').style.overflow = 'hidden'
-        Store.setListener('open', 'show')
-        Store.setListener('data', {
-            title: 'Добавить категорию',
-            image: true,
-            imagePreview: null,
-            form: [
-                {
-                    placeholder: 'Название категории',
-                    value: '',
-                    type: 'text'
-                },
-                {
-                    placeholder: 'Название категории(в единственном числе)',
-                    value: '',
-                    type: 'text'
-                },
-                {
-                    placeholder: 'Для мужчин',
-                    value: '',
-                    type: 'checkbox'
-                },
-                {
-                    placeholder: 'Для женщин',
-                    value: '',
-                    type: 'checkbox'
-                },
-                {
-                    placeholder: 'Изображение',
-                    value: '',
-                    type: 'file'
-                }
-            ],
-        })
+        document.body.style.overflow = 'hidden'
+        Store.setListener('categoriesPopUp', 'show')
     }
 
     return (

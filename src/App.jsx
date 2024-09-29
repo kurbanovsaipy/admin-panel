@@ -7,6 +7,8 @@ import useMain from './useMain';
 import Loading from './components/loading/Loading';
 import MainPopUp from './components/popups/MainPopUp';
 import Orders from './components/popups/Orders';
+import Notes from './components/popups/Notes';
+import Categories from './components/popups/Categories';
 
 
 const App = () => {
@@ -30,6 +32,8 @@ const App = () => {
           <Calendar />
           <MainPopUp />
           <Orders />
+          <Notes />
+          <Categories />
 
         </div>
       :

@@ -16,6 +16,15 @@
             display: flex;
             align-items: center;
             @include adaptiveProperty(gap, 20, 10);
+            .get_filter {
+                @include mediaMinWidth(992) {
+                    transition: 0.4s;
+                    cursor: pointer;
+                    &:hover {
+                        color: var(--main-color);
+                    }
+                }
+            }
         }
     }
 
@@ -115,6 +124,89 @@
                     @include adaptiveFont(20, 18);
                 }
             }
+        }
+    }
+
+    .filters_panel {
+        position: fixed;
+        z-index: 200;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 400px;
+        height: 100dvh;
+        overflow: auto;
+        padding: 30px 20px;
+        background-color: var(--background);
+        display: flex;
+        flex-direction: column;
+        gap: 5dvh;
+        transform: translateX(100%);
+        transition: 0.8s;
+        &.open {
+            transform: translateX(0)
+        }
+        &.close {
+            transform: translateX(100%)
+        }
+        .filter_name {
+            @include adaptiveFont(20, 18);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+        .filter_grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            @include adaptiveProperty(gap, 20, 10);
+        }
+
+        .color_item {
+            position: relative;
+            font-size: 14px;
+            padding-bottom: 5px;
+            display: grid;
+            grid-template-columns: 16px 1fr;
+            gap: 6px;
+            align-items: center;
+            transition: 0.4s;
+            cursor: pointer;
+            span {               
+                position: relative; 
+                height: 16px;
+                border: 1px solid var(--text-color-light);
+                border-radius: 5px;
+                transition: 0.4s;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 3px;
+                    background-color: transparent;
+                }
+            }
+            &.active {
+                span::before {
+                    background-color: var(--text-color-light);
+                }
+            }
+            @include mediaMinWidth(992) {
+                &:hover {
+
+                    span {
+
+                    }
+                }
+            }
+        }
+
+        button {
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }

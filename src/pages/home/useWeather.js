@@ -14,7 +14,7 @@ export default function useWeather() {
 
     const openCalendar = () => {
         Store.setListener('calendar', 'show')
-        document.querySelector('html').style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden'
     }
 
     useEffect(() => {

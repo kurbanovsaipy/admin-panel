@@ -33,7 +33,7 @@ const MainPopUp = () => {
     Store.useListener('data', setData)
 
     const closePopUp = () => {
-        document.querySelector('html').style.overflow = 'visible'
+        document.body.style.overflow = 'visible'
         setIsOpen('close')
         //setData({})
         // setTimeout(() => {

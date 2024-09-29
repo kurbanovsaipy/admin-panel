@@ -3,7 +3,7 @@ import './css/input.css';
 
 const ChechBox = ({title, value, setValue}) => {
     return (
-        <div className={`checkbox ${value ? 'active' : ''}`} onMouseDown={() => setValue(title, !value)}>
+        <div className={`checkbox ${value ? 'active' : ''}`} onMouseDown={() => setValue(prev => !prev)}>
             <span></span>
             <p>{title}</p>
         </div>

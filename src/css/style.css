@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-/*-----------Цвеиа------------*/
 /*-------------Миксины----------------*/
 :root {
   --main-color: rgb(63, 252, 16);
@@ -114,11 +113,11 @@ input:-webkit-autofill:focus {
 
 /*-------------------------------------*/
 .main_wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 5fr;
 }
 .main_wrapper .main_container {
   position: relative;
-  flex: 5;
 }
 
 .container {
@@ -212,15 +211,17 @@ input:-webkit-autofill:focus {
   transition: 0.5s;
   stroke: var(--red);
 }
-.main_icon:hover {
-  background-color: var(--main-color);
-}
-.main_icon:hover svg .moon {
-  fill: var(--text-color-dark);
-}
-.main_icon:hover svg .main_icon_path path,
-.main_icon:hover svg .main_icon_path circle {
-  stroke: var(--text-color-dark);
+@media screen and (min-width: 992px) {
+  .main_icon:hover {
+    background-color: var(--main-color);
+  }
+  .main_icon:hover svg .moon {
+    fill: var(--text-color-dark);
+  }
+  .main_icon:hover svg .main_icon_path path,
+  .main_icon:hover svg .main_icon_path circle {
+    stroke: var(--text-color-dark);
+  }
 }
 
 .main_loading {

@@ -72,10 +72,10 @@ input:-webkit-autofill:focus {
 
 /*-------------------------------------*/
 .main_wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 5fr;
     .main_container {
         position: relative;
-        flex: 5;
     }
 }
 
@@ -134,16 +134,18 @@ input:-webkit-autofill:focus {
             }
         }
     }
-    &:hover {
-        background-color: var(--main-color);
-        svg {
-            .moon {
-                fill: var(--text-color-dark);
-            }
-            .main_icon_path {
-                path,
-                circle {
-                    stroke: var(--text-color-dark);
+    @include mediaMinWidth(992) {
+        &:hover {
+            background-color: var(--main-color);
+            svg {
+                .moon {
+                    fill: var(--text-color-dark);
+                }
+                .main_icon_path {
+                    path,
+                    circle {
+                        stroke: var(--text-color-dark);
+                    }
                 }
             }
         }

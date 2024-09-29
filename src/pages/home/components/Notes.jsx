@@ -4,35 +4,13 @@ import Store from '../../../Store';
 const Notes = () => {
 
     const openPopUp = () => {
-        document.querySelector('html').style.overflow = 'hidden'
-        Store.setListener('open', 'show')
-        Store.setListener('data', {
-            title: 'Добавить заметку',
-            image: true,
-            imagePreview: null,
-            form: [
-                {
-                    placeholder: 'Тема',
-                    value: '',
-                    type: 'text'
-                },
-                {
-                    placeholder: 'Описание',
-                    value: '',
-                    type: 'textarea'
-                },
-                {
-                    placeholder: 'Изображение',
-                    value: '',
-                    type: 'file'
-                }
-            ],
-        })
+        document.body.style.overflow = 'hidden'
+        Store.setListener('notes', 'show')
     }
 
     const openUpdatePopUp = () => {
-        Store.setListener('open', 'show')
-        document.querySelector('html').style.overflow = 'hidden'
+        Store.setListener('notes', 'show')
+        document.body.style.overflow = 'hidden'
     }
 
     return (

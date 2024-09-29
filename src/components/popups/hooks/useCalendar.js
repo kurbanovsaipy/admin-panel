@@ -49,12 +49,8 @@ export default function useCalendar() {
     Store.useListener('calendar', setIsOpen)
 
     const closePopUp = () => {
-        document.querySelector('html').style.overflow = 'visible'
+        document.body.style.overflow = 'visible'
         setIsOpen('close')
-        
-        // setTimeout(() => {
-        //     setIsOpen(false)
-        // }, 500)
     }
 
     const getDaysInMonth = (year, month) => {

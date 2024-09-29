@@ -3,12 +3,18 @@ import './css/product.css'
 import Store from '../../Store';
 import ProductItem from './components/ProductItem';
 import Button from '../../components/button/Button';
+import Filters from './components/Filters';
 
 const Products = () => {
 
     useEffect(() => {
+        document.body.style.overflow = 'hidden'
         Store.setListener('title', 'Товары')
     }, [])
+
+    const openFilter = () => {
+        Store.setListener('filter', 'open')
+    }
 
     return (
         <div className='products container'>
@@ -17,7 +23,7 @@ const Products = () => {
                 <Button mode={'fill'} title={'Добавить товар'}/>
 
                 <div className="button_block">
-                    <div className="ger_filter">Фильтры</div>
+                    <div className="get_filter" onClick={openFilter}>Фильтры</div>
                     
                     <div className="sorting">
                         <p>Сортировка</p>
@@ -34,6 +40,8 @@ const Products = () => {
                 <ProductItem image={'https://static.lichi.com/product/46918/034ed4bf737fd3eb67165f6c96421121.jpg?v=0_46918.0'}/>
 
             </div>
+
+            <Filters />
 
         </div>
     );
