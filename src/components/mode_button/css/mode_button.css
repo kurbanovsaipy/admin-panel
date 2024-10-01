@@ -19,13 +19,14 @@
   transition: 0.4s;
 }
 .main_icon.mode_button svg.sun {
+  width: 22px;
+  height: 22px;
   top: 0%;
   transform: translate(-50%, -50%);
 }
 .main_icon.mode_button svg.sun path {
   transition: 0.4s;
   stroke: var(--in-progress);
-  fill: var(--in-progress);
 }
 .main_icon.mode_button svg.moon_icon {
   top: 100%;
@@ -50,6 +51,5 @@
 @media screen and (min-width: 992px) {
   .main_icon.mode_button:hover svg.sun path {
     stroke: var(--text-color-dark);
-    fill: var(--text-color-dark);
   }
 }/*# sourceMappingURL=mode_button.css.map */
