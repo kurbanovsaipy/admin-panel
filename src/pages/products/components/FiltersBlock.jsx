@@ -10,7 +10,7 @@ const FiltersBlock = () => {
 
     return (
         <div className="product_filters">
-            <Button mode={'fill'} title={'Добавить товар'}/>
+            <Button mode={'fill'} title={'Добавить товар'} callback={filters.openModal}/>
 
             <div className="button_block">
                 <div className="get_filter" onClick={(e) => filters.openFilter(e)}>Фильтры</div>

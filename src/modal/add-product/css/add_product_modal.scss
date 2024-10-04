@@ -1,0 +1,378 @@
+@import './../../../css/common';
+
+
+.add_product_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    z-index: 10000;
+    transform: translateX(0%);
+    transition: 0.7s;
+    animation: OpenOrder 0.5s forwards;
+    display: flex;
+    flex-wrap: wrap;
+
+    & h4.product__label {
+        opacity: 0.5;
+        @include adaptiveFont(16, 14);
+    }
+
+    & h3 {
+        @include adaptiveFont(25, 20);
+        @include adaptiveProperty(margin-bottom, 40, 20);
+    }
+
+    & h3.chapter__title {
+        @include adaptiveFont(25, 20);
+        @include adaptiveProperty(margin-top, 40, 20);
+        @include adaptiveProperty(margin-bottom, 20, 15);
+    }
+
+    .slider_container {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        @include adaptiveProperty(padding, 30, 15);
+        @include adaptiveProperty(gap, 30, 15);
+
+        & h2 {
+            @include adaptiveFont(25, 20);
+            // @include adaptiveProperty(margin-bottom, 40, 20);
+        }
+
+        .main_image {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--grey);
+            border-radius: 20px;
+            cursor: pointer;
+
+            & svg {
+                width: 100%;
+                max-width: 200px;
+                fill: var(--gefault-image)
+            }
+
+            .file_input {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                z-index: 3;
+                padding: 10px;
+                input {
+                    width: 0;
+                    height: 0;
+                }
+                .file_button {
+                    cursor: pointer;
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid var(--main-color);
+                    border-radius: 50%;
+                    transition: 0.3s;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 2px;
+                        height: 60%;
+                        background-color: var(--text-color-light);
+                        transition: 0.3s;
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 60%;
+                        height: 2px;
+                        background-color: var(--text-color-light);
+                        transition: 0.3s;
+                    }
+                    &:hover {
+                        background-color: var(--main-color);
+                        &::before {
+                            background-color: var(--background);
+                        }
+                        &::after {
+                            background-color: var(--background);
+                        }
+                    }
+                }
+            }
+        }
+
+        .product_images {
+            display: flex;
+            gap: 15px;
+            // @include adaptiveProperty(padding, 20, 10);
+            
+            .add_image {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--grey);
+                border-radius: 20px;
+                flex-shrink: inherit;
+                width: 100%;
+                transition: 0.4s;
+                @include adaptiveProperty(max-width, 180, 60);
+                @include adaptiveProperty(height, 180, 60);
+                cursor: pointer;
+                
+                & .main_cross{
+                    position: relative;
+                    transform: translate(0) rotate(45deg);
+                    top: 0;
+                    right: 0;
+                    width: 50px;
+                    height: 50px;
+                }
+                
+                @include mediaMinWidth(992) {
+                    &:hover {
+                        box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.8);
+                        
+                        & .main_cross {
+                            &::before {background: var(--main-color);}
+                            &::after {background: var(--main-color);}
+                        }
+                    }
+                }
+            }
+        }
+    }   
+
+    .product_form {
+        overflow: auto;
+        flex: 1;
+        background: var(--grey);
+        @include adaptiveProperty(padding, 30, 20);
+
+        .line {
+            width: 100%;
+            height: 2px;
+            background: var(--text-color-light);
+            // opacity: 0.4;
+            @include adaptiveProperty(margin-bottom, 50, 30);
+            @include adaptiveProperty(margin-top, 50, 30);
+        }
+
+        .product_category {
+            position: relative;
+            @include adaptiveFont(18, 16);
+            display: flex;
+            align-items: center;
+            // justify-content: space-between;
+            gap: 20px;
+            width: max-content;
+            @include adaptiveProperty(margin-bottom, 25, 15);
+            cursor: pointer;
+
+            & p {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            & svg {
+                height: 17px;
+                width: 17px;
+                transform: rotate(180deg);
+                transition: 0.4s;
+                transition-delay: 0.2s;
+                .main_icon_path {
+                    path,
+                    circle {
+                        transition: 0.5s;
+                        stroke: var(--text-color-light);
+                    }
+                    &.power {
+                        path,
+                        circle {
+                            transition: 0.5s;
+                            stroke: var(--red);
+                        }
+                    }
+                }
+            }
+
+            .category_list {
+                position: absolute;
+                bottom: -10px;
+                right: 0;
+                width: max-content;
+                background-color: var(--background);
+                z-index: 50;
+                transform: translateY(100%);
+                overflow: hidden;
+                height: 0px;
+                transition: 0.3s;
+                transition-delay: 0.3s;
+                border-radius: 5px;
+                cursor: default;
+                .category_list_wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 20px 15px;
+                    opacity: 0;
+                    transition: 0.3s;
+                    transition-delay: 0s;
+                }
+                .category_list_item {
+                    font-size: 13px;
+                    padding-bottom: 3px;
+                    cursor: pointer;
+                    &.active {
+                        border-bottom: 1px solid var(--text-color-light);
+                    }
+                }
+                &.active {
+                    transition-delay: 0s;
+                    // height: 150px;
+                    .category_list_wrapper {
+                        transition-delay: 0.3s;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        
+        & .main_input {
+            @include adaptiveProperty(margin-bottom, 25, 15)
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            @include adaptiveProperty(margin-bottom, 25, 15);
+        }
+
+        .price_input {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--text-color-light);
+            @include adaptiveFont(18, 16);
+            @include adaptiveProperty(margin-bottom, 25, 15);
+
+            & input {
+                color: var(--text-color-light);
+                flex: 1;
+                background: transparent;
+                @include adaptiveFont(18, 16);
+
+                &::placeholder {
+                    color: var(--text-color-light);
+                }
+            }
+        }
+
+        .main__color {
+            @include adaptiveProperty(margin-top, 15, 10);
+            height: 50px;
+            width: 60px;
+            background-color: rgb(221, 196, 149);
+            border-radius: 10px;
+            transition: 0.4s;
+            cursor: pointer;
+
+            @include mediaMinWidth(992) {
+                &:hover{
+                    box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.8);
+                }
+            }
+        }
+
+        .palete {
+            width: 100%;
+            @include adaptiveProperty(margin-top, 25, 15);
+
+            .palete_list {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                @include adaptiveProperty(margin-top, 15, 10);
+
+                .palete__item {
+                    width: 30px;
+                    height: 30px;
+                    flex-shrink: 0;
+                    border-radius: 50%;
+                    border: 2px solid var(--text-color-light);
+                    transition: 0.4s;
+                    cursor: pointer;
+
+                    &.add {
+                        position: relative;
+                        border-color: var(--main-color);
+                        
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: var(--text-color-light);
+                            width: 1.5px;
+                            height: 50%;
+                            transition: 0.4s;
+                        }
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: var(--text-color-light);
+                            width: 50%;
+                            height: 1.5px;
+                            transition: 0.4s;
+                        }
+                        
+                        @include mediaMinWidth(992) {
+                            &:hover {
+                                background: var(--main-color);
+                                &::after{
+                                    background-color: var(--background);
+                                }
+                                &::before{
+                                    background-color: var(--background);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes OpenOrder {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {  
+        transform: translateX(0);
+    }
+}
+
+@keyframes CloseOrder {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

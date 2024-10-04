@@ -14,6 +14,7 @@
   --in-progress: rgb(238, 111, 27);
   --new: #00e6ee;
   --darkening: rgba(0, 0, 0, 0.514);
+  --gefault-image: #1e1f24;
 }
 
 * {

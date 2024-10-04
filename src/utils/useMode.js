@@ -16,6 +16,7 @@ export default function useMode() {
         --in-progress: rgb(238, 111, 27);
         --new: #00e6ee;
         --darkening: rgb(255 255 255 / 27%);
+        --gefault-image: #1e1f24;
     `
     const darkTheme = `
         --main-color: rgb(63, 252, 16);
@@ -30,6 +31,7 @@ export default function useMode() {
         --in-progress: rgb(238, 111, 27);
         --new: #00e6ee;
         --darkening: rgba(0, 0, 0, 0.514);
+        --gefault-image: #383940;
     `
 
     const [mode, setMode] = useState(localStorage.getItem('Mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
