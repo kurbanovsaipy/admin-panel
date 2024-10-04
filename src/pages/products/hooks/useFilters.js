@@ -24,6 +24,10 @@ export default function useFilters() {
         Store.setListener('filter', 'open')
     }
 
+    const openModal = () => {
+        Store.setListener('open_add_product_modal', true)
+    }
+
     useEffect(() => {
         window.addEventListener('click', closeSorting)
 
@@ -32,5 +36,5 @@ export default function useFilters() {
         }
     }, [])
 
-    return { closeSorting, openFilter, sorting, openSorting }
+    return { closeSorting, openFilter, sorting, openSorting, openModal }
 }

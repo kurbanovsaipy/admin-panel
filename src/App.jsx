@@ -9,6 +9,7 @@ import MainPopUp from './components/popups/MainPopUp';
 import Orders from './components/popups/Orders';
 import Notes from './components/popups/Notes';
 import Categories from './components/popups/Categories';
+import AddProductModal from './modal/add-product/AddProductModal';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Orders />
           <Notes />
           <Categories />
+          <AddProductModal />
 
         </div>
       :
