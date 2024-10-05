@@ -2,30 +2,26 @@ import React, { useEffect } from 'react';
 import Store from '../../Store';
 import './css/categories.css'
 import img from './images/platya.jpg'
+import useCategories from './hooks/useCategories';
+import CategoriesItem from './components/CategoriesItem';
 
 const Categories = () => {
 
-    useEffect(() => {
-        Store.setListener('title', 'Категории')
-    }, [])
-
-    const openUpdateCategoriesPopUp = () => {
-
-    }
-
-    const openCategoriesPopUp = () => {
-        document.body.style.overflow = 'hidden'
-        Store.setListener('categoriesPopUp', 'show')
-    }
+    const categories = useCategories()
 
     return (
-        <div className='categories container'>
-            <div className="categories_item" onMouseDown={() => openUpdateCategoriesPopUp()}>
-                <img src={img} className='back_image' alt="" />
-                <h3 className='title'>Платья</h3>
-            </div>
-            <div className="categories_item add" onMouseDown={openCategoriesPopUp}><span className='cross'></span></div>
-        </div>
+        <>
+            {categories.load ? 
+                <div className='categories container'>
+                    {categories.categoreisList.length ? 
+                        categories.categoreisList.map((el) => (
+                            <CategoriesItem key={el.categoryid} el={el} callback={categories.openUpdateCategoriesPopUp} deleteItem={categories.deleteItem}/>
+                        ))
+                    :<></>}
+                    <div className="categories_item add" onMouseDown={categories.openCategoriesPopUp}><span className='cross'></span></div>
+                </div>
+            :<div className='loading'>Loading...</div>}
+        </>
     );
 };
 

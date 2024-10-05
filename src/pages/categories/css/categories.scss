@@ -14,6 +14,7 @@
         align-items: end;
         justify-content: end;
         cursor: pointer;
+        animation: OpenContainer 0.8s forwards;
         &::before {
             content: '';
             position: absolute;
@@ -73,9 +74,11 @@
                 }
             }
         }
-        &:hover {
-            &::before {
-                background-color: rgba(0, 0, 0, 0.1);
+        @include mediaMinWidth(992) {
+            &:hover {
+                &::before {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
             }
         }
     }

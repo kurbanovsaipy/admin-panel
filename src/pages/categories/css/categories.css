@@ -15,6 +15,7 @@
   align-items: end;
   justify-content: end;
   cursor: pointer;
+  animation: OpenContainer 0.8s forwards;
 }
 .categories .categories_item::before {
   content: "";
@@ -86,6 +87,8 @@
   left: 0;
   transform: translateY(-50%);
 }
-.categories .categories_item:hover::before {
-  background-color: rgba(0, 0, 0, 0.1);
+@media screen and (min-width: 992px) {
+  .categories .categories_item:hover::before {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }/*# sourceMappingURL=categories.css.map */

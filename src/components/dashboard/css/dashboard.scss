@@ -11,7 +11,7 @@
     height: 100dvh;
     overflow: hidden;
     z-index: 100;
-    transition: 1s;
+    transition: 1s transform, 1s width, 0.3s background-color;
     @include mediaMaxWidth(1300) {
         transition: 1.3s;
         transition-delay: 0.3s;
