@@ -1,38 +1,32 @@
 import React from 'react';
 import Store from '../../../Store';
+import useNotes from '../hooks/useNotes';
+import NotesItem from './NotesItem';
+import LoadingGeneral from '../../../components/loading/LoadingGeneral';
+import NoItems from '../../../components/no_items/NoItems';
 
 const Notes = () => {
 
-    const openPopUp = () => {
-        document.body.style.overflow = 'hidden'
-        Store.setListener('notes', 'show')
-    }
-
-    const openUpdatePopUp = () => {
-        Store.setListener('notes', 'show')
-        document.body.style.overflow = 'hidden'
-    }
+    const notes = useNotes()
 
     return (
         <div className="vidgets_item notes">
             <h2 className="title">Заметки</h2>
-            <div className="notes_list">
-                <div className="notes_list_item" onMouseDown={() => openUpdatePopUp(1)}>
-                    <img src="https://static.lichi.com/product/47614/dc39bb86ee7ecbfcba691b89ca3f71aa.jpg?v=0_47614.0" alt="" />
-                    <div className="content">
-                        <h2 className="tem">Доделать платье</h2>
-                        <p className="description">
-                            Перешить кров на платье номер
-                        </p>
-                    </div>
-                </div>
-                {/*<div className="notes_list_item">
 
-                </div>
-                <div className="notes_list_item">
-
-                </div>*/}
-                <div className="all_notes" onClick={openPopUp}>
+            <div className="notes_list_wrapper">
+                {notes.load ? 
+                    <>
+                        {notes.notesList?.length ? 
+                        <div className='notes_list'>
+                                {notes.notesList.map((el) => (
+                                    <NotesItem key={el.notesid} el={el} callback={notes.openUpdatePopUp}/>
+                                ))}
+                        </div>
+                        :<NoItems />}
+                    </>
+                :<LoadingGeneral />}
+                
+                <div className="all_notes" onClick={notes.openPopUp}>
                     Добавить заметки
                 </div>
             </div>
