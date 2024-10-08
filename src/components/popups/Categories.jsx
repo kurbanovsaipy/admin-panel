@@ -4,62 +4,52 @@ import Store from '../../Store';
 import defaultImg from './images/default.svg';
 import Input from '../input/Input';
 import Button from '../button/Button';
+import Api from '../../Api';
+import useCreateCategories from './hooks/useCreateCategories';
 
 const Categories = () => {
 
-    const [isOpen, setIsOpen] = useState(false)
-    const [imagePreview, setImagePreview] = useState(false)
-    Store.useListener('categoriesPopUp', setIsOpen)
+    const create = useCreateCategories()
 
-    const closePopUp = () => {
-        document.body.style.overflow = 'visible'
-        setIsOpen('close')
-        setImagePreview(false)
-    }
-
-    const previewImg = (e) => {
-        setImagePreview(URL.createObjectURL(e.target.files[0]))
-    }
-
-    if(!isOpen) return null
+    if(!create.isOpen) return null
 
     return (
-        <div className={`main_popup ${isOpen}`} onMouseDown={closePopUp}>
-            <form action="" className="popup_form" onMouseDown={(e) => e.stopPropagation()}>
+        <div className={`main_popup ${create.isOpen}`} onMouseDown={create.closePopUp}>
+            <form action="" className="popup_form" onMouseDown={(e) => e.stopPropagation()} onSubmit={(e) => create.createCategories(e)}>
                 <div className="panel">
                     <h2 className="title">Добавить категорию</h2>
                     <div className="form_content">
 
                         <div className="input_wrapper">
-                            <Input type={'text'} value={''} placeholder={'Название категории'} changeValue={''}/>
+                            <Input type={'text'} value={create.input.categories_plural} placeholder={'Название категории'} name={'categories_plural'} changeValue={create.changeValue}/>
                         </div>
 
                         <div className="input_wrapper">
-                            <Input type={'text'} value={''} placeholder={'Название категории(в единственном числе)'} changeValue={''}/>
+                            <Input type={'text'} value={create.input.categories} placeholder={'Название категории(в единственном числе)'} name={'categories'} changeValue={create.changeValue}/>
                         </div>
 
                         <div className="input_wrapper">
-                            <ChechBox title={'Для мужчин'}/>
+                            <ChechBox title={'Для мужчин'} value={create.forMen} setValue={create.setMen}/>
                         </div>
 
                         <div className="input_wrapper">
-                            <ChechBox title={'Для женщин'}/>
+                            <ChechBox title={'Для женщин'} value={create.forWomen} setValue={create.setWomen}/>
                         </div>
 
                     </div>
-                    <Button title={'Сохранить'}/>
+                    <Button title={'Сохранить'} type={'submit'}/>
                 </div>
                     
                 <div className="cover">
                     <div className="image_input">
                         <label htmlFor="input_image">
-                            <input id='input_image' type="file" onChange={previewImg}/>
-                            {imagePreview ? <img src={imagePreview} alt="" className="cover_image" /> : <img src={defaultImg} alt="" className="default_image" />}
+                            <input id='input_image' type="file" onChange={create.previewImg}/>
+                            {create.imagePreview ? <img src={create.imagePreview} alt="" className="cover_image" /> : <img src={defaultImg} alt="" className="default_image" />}
                         </label>
                     </div>
                     <div className="file_input">
                         <label htmlFor="input_file">
-                            <input id='input_file' type="file" onChange={previewImg}/>
+                            <input id='input_file' type="file" onChange={create.previewImg}/>
                             <div className='file_button'></div>
                         </label>
                     </div>

@@ -42,6 +42,12 @@
                     align-items: center;
                     gap: 3px;
                     cursor: pointer;
+                    transition: 0.3s;
+                    @include mediaMinWidth(992) {
+                        &:hover {
+                            color: var(--main-color);
+                        }
+                    }
                     svg {
                         width: 15px;
                         transform: rotate(180deg);

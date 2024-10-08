@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ProductItem = ({image}) => {
+    
     return (
         <div className="product_item">
 

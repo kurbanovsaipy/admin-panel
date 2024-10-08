@@ -71,7 +71,6 @@ input:-webkit-autofill:focus {
     transition: background-color 0s 600000s, color 0s 600000s;
     caret-color: var(--text-color-light);
 }
-
 /*-------------------------------------*/
 .main_wrapper {
     display: grid;
@@ -81,6 +80,9 @@ input:-webkit-autofill:focus {
     }
     @include mediaMaxWidth(768) {
         grid-template-columns: auto;
+    }
+    &.light {
+        
     }
 }
 

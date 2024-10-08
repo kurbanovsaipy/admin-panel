@@ -66,6 +66,12 @@
   align-items: center;
   gap: 3px;
   cursor: pointer;
+  transition: 0.3s;
+}
+@media screen and (min-width: 992px) {
+  .products .product_filters .button_block .sorting p:hover {
+    color: var(--main-color);
+  }
 }
 .products .product_filters .button_block .sorting p svg {
   width: 15px;
