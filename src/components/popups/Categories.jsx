@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ChechBox from '../input/ChechBox';
-import Store from '../../Store';
 import defaultImg from './images/default.svg';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import Api from '../../Api';
 import useCreateCategories from './hooks/useCreateCategories';
 
 const Categories = () => {
@@ -43,13 +41,13 @@ const Categories = () => {
                 <div className="cover">
                     <div className="image_input">
                         <label htmlFor="input_image">
-                            <input id='input_image' type="file" onChange={create.previewImg}/>
+                            <input id='input_image' type="file" onChange={create.previewImgCat}/>
                             {create.imagePreview ? <img src={create.imagePreview} alt="" className="cover_image" /> : <img src={defaultImg} alt="" className="default_image" />}
                         </label>
                     </div>
                     <div className="file_input">
                         <label htmlFor="input_file">
-                            <input id='input_file' type="file" onChange={create.previewImg}/>
+                            <input id='input_file' type="file" onChange={create.previewImgCat}/>
                             <div className='file_button'></div>
                         </label>
                     </div>
