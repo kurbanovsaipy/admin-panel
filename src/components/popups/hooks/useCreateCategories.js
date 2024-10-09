@@ -1,21 +1,29 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Store from "../../../Store"
+import Api from "../../../Api"
 
 
 export default function useCreateCategories() {
 
     const [isOpen, setIsOpen] = useState(false)
     const [imagePreview, setImagePreview] = useState(false)
-    Store.useListener('categoriesPopUp', setIsOpen)
+    Store.useListener('categoriesPopUp', (data) => {
+        if(timer.current) {
+            clearTimeout(timer.current)
+        }
+        setIsOpen(data)
+    })
 
     const [input, setInput] = useState({
         categories_plural: '',
         categories: '',
-        image: false
+        image: undefined
     })
 
     const [forMen, setMen] = useState(false)
     const [forWomen, setWomen] = useState(false)
+
+    const timer = useRef(null)
 
     const createCategories = async (e) => {
         e.preventDefault()
@@ -27,7 +35,6 @@ export default function useCreateCategories() {
         data.append('image', input.image)
 
         let res = await Api.postFormData('api/categories/create', data)
-
         if(res === 'error') {
             return 
         }
@@ -36,7 +43,7 @@ export default function useCreateCategories() {
             setInput({
                 categories_plural: '',
                 categories: '',
-                image: false
+                image: undefined
             })
             setImagePreview(false)
             setMen(false)
@@ -61,16 +68,30 @@ export default function useCreateCategories() {
         setInput({
             categories_plural: '',
             categories: '',
-            image: false
+            image: undefined
         })
         setMen(false)
         setWomen(false)
+        timer.current = setTimeout(() => {
+            setIsOpen(false)
+        }, 500)
     }
 
-    const previewImg = (e) => {
+    const previewImgCat = (e) => {
+        console.log(e.target.files[0])
         setImagePreview(URL.createObjectURL(e.target.files[0]))
         setInput(prev => ({...prev, image: e.target.files[0]}))
     }
 
-    return { isOpen, closePopUp, createCategories, input, changeValue, forMen, forWomen, setMen, setWomen, previewImg, imagePreview,  }
+    useEffect(() => {
+
+        return () => {
+            if(timer.current) {
+                clearTimeout(timer.current)
+            }
+        }
+
+    }, [])
+
+    return { isOpen, closePopUp, createCategories, input, changeValue, forMen, forWomen, setMen, setWomen, previewImgCat, imagePreview,  }
 }

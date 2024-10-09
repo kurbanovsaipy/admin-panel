@@ -38,21 +38,16 @@ export default function useCategories() {
     }
 
     const deleteItem = async (id) => {
-        try {
+        
+        let res = await Api.delete(`api/categories/delete/${id}`)
 
-            let res = await Api.delete(`api/categories/delete/${id}`)
-
-            if(res === 'error') {
-                return
-            } else {
-                setCategoriesList(prev => prev.filter(el => el.categoryid !== id))
-                return
-            }
-
-        } catch(e) {
-            console.log(e)
-            return 'error'
+        if(res === 'error') {
+            return
+        } else {
+            setCategoriesList(prev => prev.filter(el => el.categoryid !== id))
+            return
         }
+
     }
 
     return { openCategoriesPopUp, openUpdateCategoriesPopUp, load, categoreisList, deleteItem }
