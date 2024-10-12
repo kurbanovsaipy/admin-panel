@@ -125,9 +125,12 @@
         .thumb_slider {
             flex-shrink: 0;
             width: 100%;
-            display: flex;
-            gap: 15px;
             overflow-x: hidden;
+            
+            .thimb__slider__track {
+                display: flex;
+                gap: 15px;
+            }
             
             .thumb__slide {
                 position: relative;

@@ -71,6 +71,17 @@ input:-webkit-autofill:focus {
     transition: background-color 0s 600000s, color 0s 600000s;
     caret-color: var(--text-color-light);
 }
+
+img {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none; /* для старых версий WebKit (Safari, Chrome до версии 76) */
+    -moz-user-select: none; /* для Firefox */
+    -ms-user-select: none; /* для Internet Explorer/Edge */ /* стандартное свойство */
+}
+
 /*-------------------------------------*/
 .main_wrapper {
     display: grid;
@@ -84,6 +95,14 @@ input:-webkit-autofill:focus {
     &.light {
         
     }
+}
+
+.nocopy{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .container {

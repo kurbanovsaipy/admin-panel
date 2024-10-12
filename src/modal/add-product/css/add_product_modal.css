@@ -183,9 +183,11 @@
 .add_product_modal .slider_container .thumb_slider {
   flex-shrink: 0;
   width: 100%;
+  overflow-x: hidden;
+}
+.add_product_modal .slider_container .thumb_slider .thimb__slider__track {
   display: flex;
   gap: 15px;
-  overflow-x: hidden;
 }
 .add_product_modal .slider_container .thumb_slider .thumb__slide {
   position: relative;

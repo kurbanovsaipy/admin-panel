@@ -5,7 +5,10 @@ import image2 from './../images/wallets.jpg'
 export default function useSlider () {
     const mainSlider = useRef(null)
     const thumbSlider = useRef(null)
+    const thumbSliderTrack = useRef(null)
+    const [thumbSliderScroll, setThumbSliderScroll] = useState(0)
     const [slideNum, setSlideNum] = useState(1)
+
     const slideList = [
         {
             id: 1,
@@ -34,11 +37,15 @@ export default function useSlider () {
     ]
 
     const nextSlide = () => {
+        let allSlides = Array.from(document.getElementsByClassName('thumb__slide'));
+        
         if(slideNum >= slideList.length) {
             setSlideNum(1)
         } else {
             setSlideNum(prev => prev + 1)
         }
+        setSlideNum(num)
+        console.log(allSlides[slideNum].offsetLeft, thumbSlider.current.offsetWidth)
     }
 
     const prevSlide = () => {
@@ -53,5 +60,5 @@ export default function useSlider () {
         setSlideNum(num)
     }
 
-    return {mainSlider, slideList, slideNum, changeSlideNum, nextSlide, prevSlide}
+    return {mainSlider, thumbSlider, thumbSliderTrack, slideList, slideNum, changeSlideNum, nextSlide, prevSlide}
 }
