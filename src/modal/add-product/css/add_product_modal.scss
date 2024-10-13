@@ -123,13 +123,19 @@
         }
 
         .thumb_slider {
+            position: relative;
             flex-shrink: 0;
             width: 100%;
             overflow-x: hidden;
+            @include adaptiveProperty(height, 180, 60);
             
             .thimb__slider__track {
+                position: absolute;
+                top: 0;
+                left: 0;
                 display: flex;
-                gap: 15px;
+                width: max-content;
+                transition: transform 0.5s cubic-bezier(.215,.61,.355,1);
             }
             
             .thumb__slide {
@@ -142,6 +148,7 @@
                 opacity: 0.5;
                 @include adaptiveProperty(height, 180, 60);
                 @include adaptiveProperty(max-width, 180, 60);
+                margin-right: 15px;
 
                 &::before {
                     content: '';
@@ -183,10 +190,10 @@
                 justify-content: center;
                 background: var(--grey);
                 border-radius: 20px;
-                flex-shrink: inherit;
-                width: 100%;
+                flex-shrink: 0;
+                // width: 100%;
                 transition: 0.4s;
-                @include adaptiveProperty(max-width, 180, 60);
+                @include adaptiveProperty(width, 180, 60);
                 @include adaptiveProperty(height, 180, 60);
                 cursor: pointer;
                 

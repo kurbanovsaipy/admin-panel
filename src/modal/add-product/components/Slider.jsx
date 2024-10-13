@@ -23,8 +23,12 @@ const Slider = () => {
                             <Slide el={el} slideNum={slider.slideNum}/>
                         ))}
 
-                        <Arrow mode={'prev'} callback={slider.prevSlide}/>
-                        <Arrow mode={'next'} callback={slider.nextSlide}/>
+                        {slider.slideList.length > 1 && 
+                            <>
+                                <Arrow mode={'prev'} callback={slider.prevSlide}/>
+                                <Arrow mode={'next'} callback={slider.nextSlide}/>
+                            </>
+                        }
                     </>
                 :
                    <Plug />
@@ -32,7 +36,7 @@ const Slider = () => {
             </div>
 
             <div className="thumb_slider" ref={slider.thumbSlider}>
-                <div className="thimb__slider__track" ref={slider.thumbSliderTrack}>
+                <div className="thimb__slider__track" ref={slider.thumbSliderTrack} style={{transform: `translateX(${0 - (slider.thumbSliderScroll)}px)`}}>
                     {slider?.slideList?.length ?
                         <>
                             {slider.slideList.map(el => (
