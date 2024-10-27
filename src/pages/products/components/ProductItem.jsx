@@ -1,12 +1,13 @@
 import React from 'react';
+import Api from '../../../Api';
 
-const ProductItem = ({image}) => {
+const ProductItem = ({el}) => {
     
     return (
         <div className="product_item">
 
             <div className="image">
-                <img src={image} alt="" />
+                <img src={`${Api.url}images/${el.main_image}`} alt="" />
 
                 <div className="labels">
 
@@ -39,8 +40,8 @@ const ProductItem = ({image}) => {
             </div>
 
             <div className="info">
-                <div href='' className="title">Сумка Teri</div>
-                <div className="price">5000 руб.</div>
+                <div href='' className="title">{el.categories} {el.title}</div>
+                <div className="price">{el.price} руб.</div>
             </div>
 
         </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import './css/loading.css'
 
-const LoadingGeneral = () => {
+const LoadingGeneral = ({mode}) => {
     return (
-        <div className='loading'>
+        <div className={`loading ${mode}`}>
 
             Loading...
             

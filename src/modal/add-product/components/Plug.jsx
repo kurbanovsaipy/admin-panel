@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Plug = () => {
+const Plug = ({ addNewImage }) => {
     return (
         <div className="plug_image">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,12 +14,12 @@ const Plug = () => {
             </svg>
 
             <label className='add_main_image' htmlFor="add_main_image">
-                <input id='add_main_image' type="file"/>
+                <input multiple={'multiple'} id='add_main_image' type="file" onChange={addNewImage}/>
             </label>
 
             <div className="file_input">
                 <label htmlFor="input_file">
-                    <input id='input_file' type="file" />
+                    <input id='input_file' multiple={'multiple'} type="file" onChange={addNewImage}/>
                     <div className='file_button'></div>
                 </label>
             </div>

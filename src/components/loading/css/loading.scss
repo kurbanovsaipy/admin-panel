@@ -11,6 +11,9 @@
     align-items: center;
     justify-content: center;
     z-index: 3;
+    &.onpage {
+        min-height: 50dvh;
+    }
     .circle {
         position: relative;
         width: 40px;

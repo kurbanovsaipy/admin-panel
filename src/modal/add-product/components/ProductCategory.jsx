@@ -34,7 +34,7 @@ const ProductCategory = () => {
 
     return (
         <div className="product_category" onClick={toggleList}>
-            <p> <h4 className='product__label'>Категория:</h4> сумки</p>
+            <div className='category_wrapper'> <h4 className='product__label'>Категория:</h4> сумки</div>
             
             <svg ref={arrow} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)">
 
@@ -42,7 +42,7 @@ const ProductCategory = () => {
 
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
 
-                <g className='main_icon_path'> <path d="M9 10L4 15M20 15L12 7" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/> </g>
+                <g className='main_icon_path'> <path d="M9 10L4 15M20 15L12 7" strokeWidth="3" strokeLinejoin="round"/> </g>
 
             </svg>
 

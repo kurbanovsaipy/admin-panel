@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Store from "../../../Store"
 
 export default function useAddProduct () {
@@ -17,20 +17,21 @@ export default function useAddProduct () {
     }
 
     const onKey = (e) => {
-        if(e.key === 'Escape') closeModal();
+        if(e.key === 'Escape' && isOpen) closeModal();
+        return
     }
 
     useEffect(() => {
-        document.addEventListener('keydown', (e) => onKey(e)); 
+        document.addEventListener('keydown', onKey); 
 
         return () => {
-            document.removeEventListener('keydown', (e) => onKey(e)); 
+            document.removeEventListener('keydown', onKey); 
 
             if(timer.current) {
                 clearTimeout(timer.current)
             }
         }
-    }, [])
+    }, [isOpen])
 
     return {isOpen, closeModal, productModal}
 }

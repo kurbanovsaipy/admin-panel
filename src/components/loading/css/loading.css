@@ -12,6 +12,9 @@
   justify-content: center;
   z-index: 3;
 }
+.loading.onpage {
+  min-height: 50dvh;
+}
 .loading .circle {
   position: relative;
   width: 40px;

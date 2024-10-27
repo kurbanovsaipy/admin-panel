@@ -85,10 +85,22 @@
                         transition-delay: 0s;
                     }
                     .sorting_list_item {
+                        position: relative;
                         font-size: 13px;
                         padding-bottom: 3px;
-                        &.active {
-                            border-bottom: 1px solid var(--text-color-light);
+                        cursor: pointer;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            height: 1px;
+                            width: 0;
+                            transition: 0.5s;
+                            background-color: var(--text-color-light);
+                        }
+                        &.active::before {
+                            width: 100%;
                         }
                     }
                     &.active {
@@ -104,6 +116,9 @@
         }
     }
 
+    .products_wrapper {
+        width: 100%;
+    }
     .products_list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -115,6 +130,7 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+            animation: OpenContainer 0.8s forwards;
             .image {
                 position: relative;
                 width: 100%;
@@ -175,6 +191,7 @@
                             height: 30px;
                             .icon {
                                 path {
+                                    transition: 0.3s;
                                     stroke: var(--text-color-light);
                                 }
                             }

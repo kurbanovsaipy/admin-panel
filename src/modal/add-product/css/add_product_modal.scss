@@ -35,12 +35,12 @@
         flex: 2;
         display: flex;
         flex-direction: column;
-        @include adaptiveProperty(padding, 30, 15);
-        @include adaptiveProperty(gap, 30, 15);
+        @include adaptiveProperty(padding-top, 30, 15);
+        @include adaptiveProperty(padding-right, 30, 15);
+        @include adaptiveProperty(padding-left, 30, 15);
 
         & h2 {
             @include adaptiveFont(25, 20);
-            // @include adaptiveProperty(margin-bottom, 40, 20);
         }
         min-width: 0;
 
@@ -50,7 +50,7 @@
             height: 100%;
             overflow: hidden;
             border-radius: 20px;
-            background: var(--grey);
+            background: #00000071;
 
             .slider__slide {
                 position: absolute;
@@ -60,20 +60,9 @@
                 left: 0;
                 opacity: 0;
                 transition: 0.7s;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.3);
-                    z-index: 1;
-                    pointer-events: none;
-                }
-
+                
                 &.active {
+                    animation: AppearEl 0.7s cubic-bezier(.215,.61,.355,1);
                     opacity: 1;
                 }
 
@@ -90,16 +79,21 @@
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 2;
-                opacity: 0.4;
+                // opacity: 0.4;
                 transition: 0.4s;
+                // width: 50px;
+                // height: 50px;
+                padding: 6px;
+                border-radius: 50%;
+                background: var(--grey);
                 cursor: pointer;
 
                 &.prev {
-                    left: 0;
+                    left: 20px;
                 }
 
                 &.next {
-                    right: 0;
+                    right: 20px;
                     transform: scale(-1, 1) translateY(-50%);
                 }
 
@@ -109,14 +103,14 @@
                     & .main_icon_path{
                         path,
                         circle {
-                            stroke: #fff;
+                            stroke: var(--text-color-dark);
                         }
                     }
                 }
 
                 @include mediaMinWidth(992) {
                     &:hover {
-                        opacity: 1;
+                        background: var(--main-color);
                     }
                 }
             }
@@ -127,12 +121,11 @@
             flex-shrink: 0;
             width: 100%;
             overflow-x: hidden;
-            @include adaptiveProperty(height, 180, 60);
+            @include adaptiveProperty(padding-top, 30, 15);
+            @include adaptiveProperty(padding-bottom, 30, 15);
+            // @include adaptiveProperty(height, 180, 60);
             
             .thimb__slider__track {
-                position: absolute;
-                top: 0;
-                left: 0;
                 display: flex;
                 width: max-content;
                 transition: transform 0.5s cubic-bezier(.215,.61,.355,1);
@@ -145,10 +138,11 @@
                 overflow: hidden;
                 cursor: pointer;
                 transition: 0.4s;
-                opacity: 0.5;
+                // opacity: 0.5;
                 @include adaptiveProperty(height, 180, 60);
-                @include adaptiveProperty(max-width, 180, 60);
+                @include adaptiveProperty(width, 180, 60);
                 margin-right: 15px;
+                animation: AppearSlide 0.5s cubic-bezier(.215,.61,.355,1);
 
                 &::before {
                     content: '';
@@ -157,16 +151,20 @@
                     left: 0px;
                     width: 100%;
                     height: 100%;
-                    background: rgba(0, 0, 0, 0.4);
+                    background: rgba(0, 0, 0, 0.5);
                     z-index: 1;
                     pointer-events: none;
+                    transition: 0.4s;
                     opacity: 1;
                 }
                 
                 &.active {
-                    opacity: 1;
                     &::before{
                         opacity: 0;
+                    }
+
+                    & .label_container {
+                        display: flex;
                     }
                 }
                 
@@ -177,9 +175,97 @@
                     object-fit: cover;
                 }
 
+                & .cross {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    width: 25px;
+                    height: 25px;
+                    z-index: 4;
+                    background: transparent;
+                    transform: rotate(45deg);
+                    opacity: 0;
+
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: var(--main-color);
+                        width: 100%;
+                        height: 2px;
+                    }
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: var(--main-color);
+                        width: 2px;
+                        height: 100%;
+                    }
+                }
+
+                .label_container {
+                    display: flex;
+                    position: absolute;
+                    right: 7px;
+                    bottom: 7px;
+                    flex-direction: row;
+                    gap: 7px;
+                    opacity: 0;
+                    // animation: AppearEl 0.5s forwards;
+                    // animation-delay: 0.3s;
+                    transition: 0.5s;
+                    z-index: 4;
+        
+                    .label_item {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: 0.3s;
+                        background-color: var(--grey);
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: var(--main-color);
+                            svg {
+                                .icon {
+                                    path {
+                                        stroke: var(--text-color-dark);
+                                    }
+                                }
+                            }
+                        }
+
+                        svg {
+                            width: 23px;
+                            height: 23px;
+                            .icon {
+                                path {
+                                    transition: 0.3s;
+                                    stroke: var(--text-color-light);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 @include mediaMinWidth(992) {
                     &:hover {
-                        box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.56);
+                        &::before {
+                            background: rgba(0, 0, 0, 0.2);
+                        }
+
+                        & .label_container {
+                            // display: flex;
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -196,6 +282,11 @@
                 @include adaptiveProperty(width, 180, 60);
                 @include adaptiveProperty(height, 180, 60);
                 cursor: pointer;
+
+                & input {
+                    width: 0;
+                    height: 0;
+                }
                 
                 & .main_cross{
                     position: relative;
@@ -208,7 +299,7 @@
                 
                 @include mediaMinWidth(992) {
                     &:hover {
-                        box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.8);
+                        // box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.8);
                         
                         & .main_cross {
                             &::before {background: var(--main-color);}
@@ -244,7 +335,6 @@
                     object-fit: cover;
                     object-position: center;
                 }
-
                 
             }
 
@@ -300,13 +390,12 @@
             @include adaptiveFont(18, 16);
             display: flex;
             align-items: center;
-            // justify-content: space-between;
             gap: 20px;
             width: max-content;
             @include adaptiveProperty(margin-bottom, 25, 15);
             cursor: pointer;
 
-            & p {
+            & .category_wrapper {
                 display: flex;
                 align-items: center;
                 gap: 5px;
@@ -348,6 +437,7 @@
                 transition-delay: 0.3s;
                 border-radius: 5px;
                 cursor: default;
+
                 .category_list_wrapper {
                     display: flex;
                     flex-direction: column;
@@ -357,6 +447,7 @@
                     transition: 0.3s;
                     transition-delay: 0s;
                 }
+
                 .category_list_item {
                     font-size: 13px;
                     padding-bottom: 3px;
@@ -365,6 +456,7 @@
                         border-bottom: 1px solid var(--text-color-light);
                     }
                 }
+
                 &.active {
                     transition-delay: 0s;
                     // height: 150px;
@@ -408,6 +500,7 @@
 
         .main__color {
             @include adaptiveProperty(margin-top, 15, 10);
+            @include adaptiveProperty(margin-bottom, 40, 20);
             height: 50px;
             width: 60px;
             background-color: rgb(221, 196, 149);
@@ -509,20 +602,83 @@
             @include adaptiveProperty(margin-top, 25, 15);
             width: max-content;
 
+            .card_error {
+                position: absolute;
+                bottom: calc(100% + 3px);
+                left: 0;
+                color: rgb(255, 132, 132);
+                font-size: 14px;
+                font-weight: 500;
+                opacity: 0;
+                animation: OpenContainer 0.5s forwards;
+                animation-delay: 0.5s;
+            }
+
             & .def_image {
                 width: 100%;
                 max-width: 300px;
                 & rect{
+                    transition: 0.4s;
+                    transition-delay: 0.4s;
                     fill: var(--background)
                 }
+
+                & g path {
+                    transition: 0.4s;
+                }
+
+                &.check {
+                    & rect{
+                        fill: rgb(248, 156, 156);
+                    }
+                    // & g path {
+                    //     opacity: 0;
+                    // }
+                }
             }
+
+            & .img_wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                overflow: hidden;
+
+                & img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    max-width: 300px;
+                    opacity: 0;
+                    animation: OpenContainer 0.5s forwards;
+                }
+            }
+
+
+            & .add_card_image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+
+                & input {
+                    width: 0;
+                    height: 0;
+                }
+            }
+
         }
     }
 
     .file_input {
         position: absolute;
         bottom: 10px;
-        left: 10px;
+        right: 10px;
         z-index: 3;
         padding: 10px;
         input {
@@ -596,5 +752,18 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes AppearSlide {
+    0% {
+        opacity: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    100% {
+        margin-right: 15px;
+        opacity: 1;
+        @include adaptiveProperty(width, 180, 60);
     }
 }
